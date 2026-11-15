@@ -547,6 +547,12 @@ input[type=range]{margin:0}
 @media (max-width:1020px){.shh{grid-template-columns:1fr}.shh .col{display:none}.srow{grid-template-columns:52px 1fr}}
 .pc .amt{white-space:nowrap}
 .amt-row .amt{font-size:clamp(34px,3.6vw,50px)}
+.abd-top{position:absolute;right:26px;top:40px;width:150px;height:110px}
+.abd-top .cone{width:130px;height:78px}
+.abd-top .lift{font-size:21px;bottom:2px}
+.pc .amt small{font-size:16px}
+.worth{margin:4px 0 18px;padding:12px 14px;border-radius:12px;border:1px solid rgba(154,166,255,.25);background:rgba(154,166,255,.06);font-size:15px;font-weight:600;line-height:1.4}
+@media (max-width:620px){.abd-top{right:6px;top:34px;transform:scale(.8)}}
 </style>
 </head>
 <body>
@@ -631,7 +637,7 @@ input[type=range]{margin:0}
 <section id="how">
   <div class="sh rv"><h2>Даёте данные школы один раз, <span class="soft">дальше бот работает сам.</span></h2><p>Одни и те же пять шагов для любой школы: начальной, лицея, IT-школы.</p></div>
   <div class="road rv" id="road">
-    <div class="bracket"><span>Пилот · от 1 млн ₸</span></div>
+    <div class="bracket"><span>Запуск · 500 000 ₸ разово</span></div>
     <div class="comet" id="comet"></div>
     <div class="col" style="--c:#8a96ff"><div class="tags"><span class="rtag free">0 ₸</span></div><div class="node"><span class="pl"></span><span class="rseg"></span></div><h4>Разбор «тайный родитель»</h4><p class="cp">Пишу вам как мама и засекаю время ответа.</p>
       <div class="feat"><b><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="7"/><circle cx="12" cy="12" r="2.5"/></svg></b>сайт, 2ГИС, Instagram</div><div class="feat"><b><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 20l4-1L19 8l-3-3L5 16z"/></svg></b>где теряются семьи</div></div>
@@ -642,7 +648,7 @@ input[type=range]{margin:0}
     <div class="col" style="--c:#e8b06a"><div class="tags"></div><div class="node"><span class="pl"></span><span class="rseg"></span></div><h4>CRM и табло директора</h4><p class="cp">Все заявки в одном месте.</p>
       <div class="feat"><b><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="8"/><path d="M12 8v4l3 2"/></svg></b>написали → пришли → подписали</div><div class="feat"><b><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 11l18-7-7 18-2-8z"/></svg></b>видно с телефона</div></div>
     <div class="col" style="--c:#ff8f5a"><div class="tags"></div><div class="node"><span class="pl"></span><span class="rseg"></span></div><h4>Разбор цифр</h4><p class="cp">Каждую неделю правим сценарии.</p>
-      <div class="feat"><b><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 5h16l-6 7v6l-4 2v-8z"/></svg></b>где теряются родители</div><div class="feat"><b><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12a8 8 0 1 1-3-6.2M21 4v5h-5"/></svg></b>вторые 50% после 10 записей</div></div>
+      <div class="feat"><b><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 5h16l-6 7v6l-4 2v-8z"/></svg></b>где теряются родители</div><div class="feat"><b><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12a8 8 0 1 1-3-6.2M21 4v5h-5"/></svg></b>гарантия 60 дней</div></div>
     <div class="sunc"><div class="sunwrap"><div class="fb" id="sunFb"></div><canvas id="sun" width="380" height="380" aria-hidden="true"></canvas></div><h4>Полный класс к сентябрю.</h4><p>Набор на одном экране.</p><a href="#top" class="btn pri">Начать бесплатно →</a></div>
   </div>
 </section>
@@ -696,7 +702,7 @@ input[type=range]{margin:0}
       <li style="--f:4;--c:#b49cff"><span class="tm">≈6 ч</span><b>Сценарист</b><p>Пишет ответы на казахском и русском в тоне школы, каждый ведёт к записи.</p><code class="live" data-k="1"><em>пишу</em><span></span></code></li>
       <li style="--f:5;--c:#8fd6b0"><span class="tm">≈4 ч</span><b>Проверка</b><p>Задаёт боту 50 вопросов «как мама» и сверяет цены и даты с вашими данными.</p><code class="live" data-k="2"><em>проверяю</em><span></span><small>0 / 50</small></code></li>
     </ol>
-    <div class="mval"><b>Демо собирается за 24 часа и стоит 0 ₸.</b><p>Вы пишете боту как мама и решаете, запускать ли пилот.</p></div>
+    <div class="mval"><b>Демо собирается за 24 часа и стоит 0 ₸.</b><p>Вы пишете боту как мама и решаете, запускать ли систему.</p></div>
   </div>
 </section>
 
@@ -717,25 +723,27 @@ input[type=range]{margin:0}
       <p class="foot">Не понравится, просто не продолжаем.</p>
     </div>
     <div class="pc rv" style="--c:var(--lav)">
-      <div class="sale"><b>50/50</b><span>ОПЛАТА ЗА РЕЗУЛЬТАТ</span></div>
+      <div class="sale"><b>−50%</b><span>СТАРТОВАЯ ЦЕНА</span></div>
+      <span class="abd abd-top" aria-hidden="true"><span class="ufo2"><span class="dome"></span><span class="disc"></span><span class="lt"></span></span><span class="cone"></span><span class="lift"><s>1 000 000 ₸</s></span></span>
       <div class="num"><b>2</b>После демо</div>
-      <h3>Пилот системы набора</h3>
-      <div class="amt-row"><div><div class="from">на старте</div><div class="amt">500 000 ₸</div></div><span class="abd" aria-hidden="true"><span class="ufo2"><span class="dome"></span><span class="disc"></span><span class="lt"></span></span><span class="cone"></span><span class="lift">+50%</span></span></div>
-      <div class="from" style="margin-top:6px">вторые 500 000 ₸ только после первых 10 записей на пробный день</div>
-      <p class="desc">Бот на номере школы, CRM и табло директора. Всего от 1 млн ₸ за запуск.</p>
+      <h3>Запуск системы набора</h3>
+      <div class="amt">500 000 ₸<small>разово</small></div>
+      <p class="desc">Бот на номере школы, CRM и табло директора. Сам настраиваю под ваш прайс и запускаю.</p>
       <ul>
-        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M4 12.5l5 5L20 6.5"/></svg><span><b>Бот:</b> KZ и RU, цена, экскурсия, пробный день</span></li>
-        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M4 12.5l5 5L20 6.5"/></svg><span><b>CRM:</b> все заявки и табло директора</span></li>
-        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M4 12.5l5 5L20 6.5"/></svg><span><b>Дожим:</b> напоминания и возврат пропавших</span></li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M4 12.5l5 5L20 6.5"/></svg><span><b>Бот:</b> KZ и RU, цена, экскурсия, пробный день, 24/7</span></li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M4 12.5l5 5L20 6.5"/></svg><span><b>CRM и табло:</b> все заявки, набор видно с телефона</span></li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M4 12.5l5 5L20 6.5"/></svg><span><b>Дожим:</b> напоминания накануне и возврат пропавших</span></li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M4 12.5l5 5L20 6.5"/></svg><span><b>Гарантия:</b> не удвоились записи за 60 дней, работаю бесплатно</span></li>
       </ul>
-      <p class="foot">Гарантия: если за 60 дней записей не стало в 2 раза больше, работаю бесплатно, пока не станет</p>
+      <p class="worth">Одна семья, которая не ушла к конкурентам, платит за год больше, чем стоит запуск.</p>
+      <p class="foot">Стартовая цена до 31 декабря 2026 · потом 1 000 000 ₸</p>
       <a href="#build" class="btn ghost">Посмотреть пример бота ↗</a>
     </div>
     <div class="pc rv" style="--c:var(--amber)">
       <div class="num"><b>3</b>Когда пошли записи</div>
       <h3>Сопровождение</h3>
       <div class="from">цена</div>
-      <div class="amt" style="font-size:clamp(30px,3.2vw,42px)">по итогам пилота</div>
+      <div class="amt" style="font-size:clamp(30px,3.2vw,42px)">по итогам запуска</div>
       <p class="desc">Бот работает дальше, а я каждую неделю смотрю цифры и докручиваю сценарии под ваш набор.</p>
       <ul>
         <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M4 12.5l5 5L20 6.5"/></svg>Разбор цифр: написали, пришли, подписали</li>
@@ -748,7 +756,7 @@ input[type=range]{margin:0}
 
   <div class="calc rv" id="calc">
     <div class="kick">калькулятор потерь</div>
-    <h3>Двигайте ползунок под свою цену, <span>чтобы увидеть, сколько стоит одна семья и как быстро окупается пилот.</span></h3>
+    <h3>Двигайте ползунок под свою цену, <span>чтобы увидеть, сколько стоит одна семья и как быстро окупается запуск.</span></h3>
     <div class="cgrid">
       <div>
         <div class="mlab">ОБУЧЕНИЕ В МЕСЯЦ</div>
@@ -783,7 +791,7 @@ input[type=range]{margin:0}
       <div><small>Семей в месяц</small><b id="b1"></b></div>
       <div><small>Семей за сезон</small><b id="b3"></b></div>
       <div><small>Год обучения</small><b id="b2"></b></div>
-      <div><small>Пилот</small><b>от 1 млн ₸</b></div>
+      <div><small>Запуск</small><b>500 000 ₸</b></div>
       <div><small>Окупаемость</small><b id="b5"></b></div>
     </div>
     <p class="note">Это ваша оценка, а не наш прогноз. Набор считаем как 5 активных месяцев, год обучения как 9 месяцев оплаты.</p>
@@ -811,7 +819,7 @@ input[type=range]{margin:0}
     <details><summary>А если мама спросит то, чего бот не знает?</summary><p>Бот скажет «уточню у администратора» и передаст вопрос человеку. Выдумывать он не будет: отвечает только тем, что есть в ваших данных.</p></details>
     <details><summary>Понимает казахский?</summary><p>Да. Отвечает на том языке, на котором написала мама.</p></details>
     <details><summary>У нас уже есть CRM</summary><p>Бот встаёт поверх того, что есть. Если CRM нет, даём свою, с табло для директора.</p></details>
-    <details><summary>Сколько стоит и как платить?</summary><p>Разбор и демо бесплатно. Пилот от 1 000 000 ₸: 50% на старте, вторые 50% после первых 10 записей на пробный день.</p></details>
+    <details><summary>Сколько стоит?</summary><p>Разбор и демо-бот бесплатно. Запуск системы 500 000 ₸ разово по стартовой цене до 31 декабря 2026, потом 1 000 000 ₸. Сопровождение после запуска обсуждаем по итогам.</p></details>
     <details><summary>Что значит гарантия?</summary><p>Если за 60 дней записей на пробный день не стало в 2 раза больше, я продолжаю работать бесплатно, пока не станет.</p></details>
     <details><summary>Сколько займёт запуск?</summary><p>Демо за 24 часа. Срок полного запуска обсуждаем на созвоне: зависит от числа филиалов и сценариев.</p></details>
     <details><summary>Почему не нанять ещё одного админа?</summary><p>Родители часто пишут вечером и в выходные. Бот отвечает за 10 секунд в любое время, а админ занимается теми, кто уже записан.</p></details>
@@ -1078,7 +1086,7 @@ function odo(el,text){text=String(text);var cur=el._t||'';
   el._t=text;}
 
 /* ===== calculator ===== */
-var cR=$('cR'),lost=2,SEASON=5,PILOT=1e6,PMIN=80000,PMAX=600000;
+var cR=$('cR'),lost=2,SEASON=5,PILOT=5e5,PMIN=80000,PMAX=600000;
 var X0=0,X1=640,Y0=270,Y1=24,shownPrice=+cR.value;
 function days(price){return 30*PILOT/(lost*price*9)}
 function pxP(p){return X0+(X1-X0)*(p-PMIN)/(PMAX-PMIN)}
@@ -1101,9 +1109,9 @@ function calc(fromSlider){
   var price=+cR.value,fam=price*9,loss=fam*lost*SEASON,d=days(price);
   cR.style.setProperty('--p',((price-PMIN)/(PMAX-PMIN)*100)+'%');
   odo($('cFam'),fmtN(fam)+' ₸');odo($('cLoss'),fmtN(loss)+' ₸');
-  $('cFamS').textContent=fam>=PILOT?'↑ одна семья окупает весь пилот':'≈ '+Math.round(fam/PILOT*100)+'% стоимости пилота';
+  $('cFamS').textContent=fam>=PILOT?'↑ одна семья окупает весь запуск':'≈ '+Math.round(fam/PILOT*100)+'% стоимости запуска';
   $('cPay').innerHTML='≈ '+(lost*SEASON)+' семей за сезон<span class="q" title="семьи в месяц × 5 месяцев набора">?</span>';
-  $('cSub').textContent='пилот окупается за '+(d<1?'меньше дня':'≈ '+Math.round(d)+' дн.');
+  $('cSub').textContent='запуск окупается за '+(d<1?'меньше дня':'≈ '+Math.round(d)+' дн.');
   $('cLost').textContent=lost;
   odo($('b1'),String(lost));odo($('b3'),String(lost*SEASON));odo($('b2'),fmtN(fam)+' ₸');odo($('b5'),(d<1?'<1':Math.round(d))+' дн.');
   [...document.querySelectorAll('#ticks span')].forEach(function(s,i){var v=[80000,200000,350000,600000][i];s.style.color=Math.abs(v-price)<30000?'var(--amber)':''});
