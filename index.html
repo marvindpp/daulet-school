@@ -496,6 +496,7 @@ footer a:hover{color:var(--ink)}
 .cone{position:absolute;top:18px;left:50%;width:86px;height:64px;transform:translateX(-50%);clip-path:polygon(42% 0,58% 0,100% 100%,0 100%);background:linear-gradient(rgba(200,240,235,.55),rgba(160,200,255,.06));animation:brth 3s ease-in-out infinite}
 @keyframes brth{50%{opacity:.6}}
 .lift{position:absolute;bottom:4px;left:50%;transform:translateX(-50%);font-weight:800;font-size:24px;color:#d6dbff;white-space:nowrap;animation:lift 3s ease-in-out infinite;text-shadow:0 0 12px rgba(154,166,255,.7)}
+.lift{font-size:20px}
 .lift s{text-decoration-color:var(--rose);text-decoration-thickness:3px}
 @keyframes lift{50%{transform:translate(-50%,-6px) rotate(-3deg)}}
 .amt-row{display:flex;align-items:flex-end;gap:8px}
@@ -705,41 +706,41 @@ input[type=range]{margin:0}
       <div class="num"><b>1</b>Начните здесь</div>
       <h3>Разбор и демо-бот</h3>
       <div class="amt">0 ₸</div>
-      <p class="desc">Пишу в школу как мама, показываю, где теряются семьи, и собираю демо-бот на ваших данных.</p>
+      <p class="desc">Пишу в школу как мама, показываю, где теряются семьи, и за 24 часа собираю демо-бот на ваших ценах.</p>
       <ul>
         <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M4 12.5l5 5L20 6.5"/></svg>Отчёт «тайный родитель» со скринами</li>
-        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M4 12.5l5 5L20 6.5"/></svg>Демо-бот за 24 часа</li>
-        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M4 12.5l5 5L20 6.5"/></svg>Без договора и предоплаты</li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M4 12.5l5 5L20 6.5"/></svg>Пишете демо-боту сами как мама</li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M4 12.5l5 5L20 6.5"/></svg>Без договора, предоплаты и созвона</li>
       </ul>
       <p class="foot">Не понравится, просто не продолжаем.</p>
     </div>
     <div class="pc rv" style="--c:var(--lav)">
       <div class="sale"><b>50/50</b><span>ОПЛАТА ЗА РЕЗУЛЬТАТ</span></div>
-            <div class="num"><b>2</b>После демо</div>
+      <div class="num"><b>2</b>После демо</div>
       <h3>Пилот системы набора</h3>
-      <div class="from">от</div>
-      <div class="amt-row"><div class="amt">1 млн ₸</div><span class="abd" aria-hidden="true"><span class="ufo2"><span class="dome"></span><span class="disc"></span><span class="lt"></span></span><span class="cone"></span><span class="lift"><s>100%</s></span></span></div><div class="from" style="margin-top:6px">за запуск</div>
-      <p class="desc">Бот на номере школы, CRM и табло директора. Половина на старте, половина после результата.</p>
+      <div class="amt-row"><div><div class="from">на старте</div><div class="amt">500 000 ₸</div></div><span class="abd" aria-hidden="true"><span class="ufo2"><span class="dome"></span><span class="disc"></span><span class="lt"></span></span><span class="cone"></span><span class="lift">+50%</span></span></div>
+      <div class="from" style="margin-top:6px">вторые 500 000 ₸ только после первых 10 записей на пробный день</div>
+      <p class="desc">Бот на номере школы, CRM и табло директора. Всего от 1 млн ₸ за запуск.</p>
       <ul>
         <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M4 12.5l5 5L20 6.5"/></svg><span><b>Бот:</b> KZ и RU, цена, экскурсия, пробный день</span></li>
         <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M4 12.5l5 5L20 6.5"/></svg><span><b>CRM:</b> все заявки и табло директора</span></li>
         <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M4 12.5l5 5L20 6.5"/></svg><span><b>Дожим:</b> напоминания и возврат пропавших</span></li>
       </ul>
-      <p class="foot">Не 100% сразу: 50% на старте, 50% после первых 10 записей на пробный день</p>
-      <a href="#top" class="btn ghost">Обсудить пилот ↗</a>
+      <p class="foot">Гарантия: если за 60 дней записей не стало в 2 раза больше, работаю бесплатно, пока не станет</p>
+      <a href="#build" class="btn ghost">Посмотреть пример бота ↗</a>
     </div>
     <div class="pc rv" style="--c:var(--amber)">
-      <div class="num"><b>3</b>Гарантия</div>
-      <h3>Удвоение записей</h3>
-      <div class="from">гарантия на</div>
-      <div class="amt">60 дней</div>
-      <p class="desc">Если записей на пробный день не стало в 2 раза больше, продолжаю работать без оплаты, пока не станет.</p>
+      <div class="num"><b>3</b>Когда пошли записи</div>
+      <h3>Сопровождение</h3>
+      <div class="from">цена</div>
+      <div class="amt" style="font-size:clamp(30px,3.2vw,42px)">по итогам пилота</div>
+      <p class="desc">Бот работает дальше, а я каждую неделю смотрю цифры и докручиваю сценарии под ваш набор.</p>
       <ul>
-        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M4 12.5l5 5L20 6.5"/></svg>Замер «до» фиксируем на старте</li>
-        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M4 12.5l5 5L20 6.5"/></svg>Каждую неделю разбор цифр</li>
-        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M4 12.5l5 5L20 6.5"/></svg>Риск на мне, не на школе</li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M4 12.5l5 5L20 6.5"/></svg>Разбор цифр: написали, пришли, подписали</li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M4 12.5l5 5L20 6.5"/></svg>Новые сценарии под сезон и дни открытых дверей</li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M4 12.5l5 5L20 6.5"/></svg>Правки бота, когда меняются цены и программы</li>
       </ul>
-      <p class="foot">Условия гарантии прописываем в договоре.</p>
+      <p class="foot">Платите, только если решили продолжать.</p>
     </div>
   </div>
 
