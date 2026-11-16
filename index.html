@@ -3,28 +3,27 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Бот для частных школ</title>
-<meta name="description" content="Бот в WhatsApp школы отвечает родителям ночью, в выходные и праздники и записывает на день открытых дверей.">
+<title>Бот в WhatsApp для частных школ Алматы</title>
+<meta name="description" content="Бот в WhatsApp школы отвечает родителям вечером, ночью, в выходные и праздники и записывает на экскурсию. Казахский и русский.">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@600;800&family=Nunito:wght@500;700;800;900&display=swap" rel="stylesheet">
 <style>
 :root{
-  /* школьный мир: яркое небо днём, синяя ночь, жёлтый школьный автобус, коралловый кирпич */
   --sky:#EAF4FF; --paper:#FFFFFF; --ink:#1B2340; --muted:#56607D;
-  --blue:#2F6BFF; --night:#1E2862; --yellow:#FFC93C; --coral:#FF6B5B; --green:#22B573;
+  --blue:#2F6BFF; --yellow:#FFC93C; --coral:#FF6B5B; --green:#22B573;
+  /* ночная панель */
+  --n0:#121842; --n1:#1A2257; --n2:#232D6A; --nl:rgba(255,255,255,.10); --nt:#C9D1F5; --nm:#8E99CF;
   --disp:'Unbounded','Arial Black',system-ui,sans-serif; --body:'Nunito',system-ui,sans-serif;
-  color-scheme:light;
 }
 *{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
 body{background:var(--sky);color:var(--ink);font-family:var(--body);font-size:18px;line-height:1.55;-webkit-font-smoothing:antialiased}
 a{color:inherit}
 :focus-visible{outline:3px solid var(--blue);outline-offset:3px;border-radius:10px}
-.wrap{max-width:1160px;margin:0 auto;padding:0 20px}
+.wrap{max-width:1200px;margin:0 auto;padding:0 20px}
 h1,h2,h3{font-family:var(--disp);letter-spacing:-.01em;text-wrap:balance}
 h2{font-size:clamp(28px,3.6vw,44px);line-height:1.12;font-weight:800}
-.lead{color:var(--muted);font-size:19px;max-width:60ch}
-.btn{display:inline-flex;align-items:center;gap:10px;font-family:var(--body);font-weight:900;font-size:17px;text-decoration:none;padding:16px 26px;border-radius:999px;border:3px solid var(--ink);background:var(--yellow);color:var(--ink);box-shadow:0 5px 0 var(--ink);transition:transform .12s,box-shadow .12s}
+.btn{display:inline-flex;align-items:center;gap:10px;font-weight:900;font-size:17px;text-decoration:none;padding:16px 26px;border-radius:999px;border:3px solid var(--ink);background:var(--yellow);color:var(--ink);box-shadow:0 5px 0 var(--ink);transition:transform .12s,box-shadow .12s;white-space:nowrap}
 .btn:hover{transform:translateY(2px);box-shadow:0 3px 0 var(--ink)}
 .btn:active{transform:translateY(5px);box-shadow:0 0 0 var(--ink)}
 .btn.alt{background:var(--paper)}
@@ -34,393 +33,391 @@ h2{font-size:clamp(28px,3.6vw,44px);line-height:1.12;font-weight:800}
 header{background:var(--paper);border-bottom:3px solid var(--ink);position:sticky;top:0;z-index:10}
 .nav{display:flex;align-items:center;justify-content:space-between;gap:16px;height:72px}
 .logo{display:flex;align-items:center;gap:10px;font-family:var(--disp);font-weight:800;font-size:18px;text-decoration:none}
-.logo i{width:34px;height:34px;border-radius:10px;background:var(--blue);border:3px solid var(--ink);display:grid;place-items:center;color:#fff;font-style:normal;font-size:16px}
-.logo span{font-family:var(--body);font-weight:700;font-size:15px;color:var(--muted)}
-.nav ul{display:flex;gap:26px;list-style:none;font-weight:800}
-.nav ul a{text-decoration:none}
+.logo img{width:36px;height:36px;border-radius:10px;border:3px solid var(--ink);object-fit:cover}
+.nav ul{display:flex;gap:26px;list-style:none}
+.nav ul a{text-decoration:none;font-weight:800;font-size:16px}
 .nav ul a:hover{color:var(--blue)}
 .nav .btn{padding:10px 18px;font-size:15px;box-shadow:0 4px 0 var(--ink)}
+@media(max-width:860px){.nav ul{display:none}}
+@media(max-width:480px){.nav .btn span{display:none}.nav .btn{padding:10px 12px}}
 
 /* hero */
-.hero{padding:56px 0 64px}
-.hero .grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:44px;align-items:center}
-.tagline{display:inline-block;font-weight:900;font-size:15px;background:var(--paper);border:3px solid var(--ink);border-radius:999px;padding:6px 14px;margin-bottom:20px}
-.hero h1{font-size:clamp(28px,3.4vw,44px);line-height:1.08;font-weight:800;margin-bottom:22px}
-.hero h1 mark{background:none;color:var(--blue)}
-.hero .lead{margin-bottom:28px}
-.hero .cta{display:flex;gap:14px;flex-wrap:wrap;align-items:center}
-.hero .under{font-size:15px;color:var(--muted);margin-top:14px;max-width:44ch}
-.art{position:relative}
-.art svg{width:100%;height:auto;display:block;border:3px solid var(--ink);border-radius:36px;box-shadow:8px 8px 0 var(--ink);background:#fff}
-.label{position:absolute;font-weight:900;font-size:14px;background:var(--paper);border:3px solid var(--ink);border-radius:14px;padding:6px 12px;white-space:nowrap}
-.label b{display:block;font-size:12px;font-weight:800;color:var(--muted)}
-.l-day{left:-14px;top:52%}
-.l-night{right:-14px;top:30%;display:none;background:var(--night);color:#fff;border-color:var(--ink)}
-.l-night b{color:#AFC0FF}
-.l-night2{right:-14px;bottom:8%;background:var(--night);color:#fff}
-.l-night2 b{color:#AFC0FF}
-.l-morning{left:16%;bottom:-20px;background:var(--yellow)}
-.bubble{position:absolute;right:3%;top:3%;max-width:200px;background:#fff;border:3px solid var(--ink);border-radius:18px 18px 18px 4px;padding:8px 12px;font-size:14px;font-weight:700;line-height:1.3}
-.bubble small{display:block;color:var(--muted);font-weight:800;font-size:12px}
-.bubble.bot{top:auto;bottom:30%;right:3%;background:#DFF8EA;border-radius:18px 18px 4px 18px}
-.lit{animation:lit 3s ease-in-out infinite}
-@keyframes lit{50%{fill:#FFF0A8}}
+.hero{padding:56px 0 30px}
+.tag{display:inline-flex;align-items:center;gap:8px;background:var(--paper);border:3px solid var(--ink);border-radius:999px;padding:6px 14px;font-weight:900;font-size:14px}
+.tag i{width:9px;height:9px;border-radius:50%;background:var(--green);box-shadow:0 0 0 4px rgba(34,181,115,.2)}
+.htop{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,1fr);gap:48px;align-items:end;margin-top:18px}
+.hero h1{font-size:clamp(34px,4.2vw,56px);line-height:1.04;font-weight:800}
+.hero h1 span{display:block;color:var(--blue)}
+.sub{color:var(--muted);font-size:19px;max-width:52ch}
+.pts{list-style:none;margin:18px 0 0;display:grid;gap:10px}
+.pts li{display:flex;gap:12px;align-items:flex-start;font-weight:800;font-size:17px;line-height:1.4}
+.pts svg{flex:none;width:24px;height:24px;margin-top:1px;background:var(--green);color:#fff;border-radius:50%;padding:4px;border:2px solid var(--ink)}
+.cta{display:flex;gap:14px;flex-wrap:wrap;margin-top:28px}
+.under{margin-top:14px;color:var(--muted);font-size:15px;font-weight:700}
+@media(max-width:900px){.htop{grid-template-columns:1fr;gap:20px}}
 
-/* facts */
-.facts{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:10px}
-.fact{background:var(--paper);border:3px solid var(--ink);border-radius:22px;padding:20px}
-.fact h3{font-size:17px;line-height:1.25;margin-bottom:8px}
-.fact p{font-size:16px;color:var(--muted)}
-.fact:nth-child(1){background:var(--night);color:#fff} .fact:nth-child(1) p{color:#C9D2FF}
-.fact:nth-child(2){background:#FFF1C9}
+/* ======= панель ======= */
+.panel{margin-top:40px;position:relative;background:radial-gradient(120% 90% at 85% 0%,#2E3C92 0%,var(--n1) 45%,var(--n0) 100%);border:3px solid var(--ink);border-radius:34px;padding:72px 26px 26px;box-shadow:0 10px 0 var(--ink);color:#fff;overflow:hidden}
+.panel::before{content:"";position:absolute;inset:0;background-image:linear-gradient(var(--nl) 1px,transparent 1px),linear-gradient(90deg,var(--nl) 1px,transparent 1px);background-size:44px 44px;opacity:.35;pointer-events:none;mask-image:linear-gradient(#000,transparent 85%)}
+.stars i{position:absolute;width:3px;height:3px;border-radius:50%;background:#fff;opacity:.5;animation:tw 3s ease-in-out infinite}
+@keyframes tw{50%{opacity:.1}}
+.ptop{position:absolute;top:18px;left:50%;transform:translateX(-50%);background:#fff;color:var(--ink);border-radius:999px;padding:8px 18px 8px 10px;font-weight:900;font-size:15px;display:flex;align-items:center;gap:10px;white-space:nowrap;z-index:2}
+.ptop i{width:22px;height:22px;border-radius:50%;background:rgba(34,181,115,.2);display:grid;place-items:center}
+.ptop i::after{content:"";width:10px;height:10px;border-radius:50%;background:var(--green);animation:pulse 1.6s infinite}
+@keyframes pulse{50%{transform:scale(.7);opacity:.6}}
+.pgrid{position:relative;display:grid;grid-template-columns:minmax(0,.86fr) minmax(0,1fr);gap:22px;z-index:1}
 
+/* чат */
+.chat{background:#EFE7DD;border-radius:26px;overflow:hidden;display:flex;flex-direction:column;min-height:560px;border:3px solid #0B1033}
+.chat .top{background:#F7F7F5;color:var(--ink);display:flex;align-items:center;gap:12px;padding:14px 18px;border-bottom:1px solid #E2DED6}
+.chat .av{width:46px;height:46px;border-radius:50%;background:var(--yellow);border:2px solid var(--ink);display:grid;place-items:center;font-family:var(--disp);font-weight:800;font-size:18px}
+.chat .top b{display:block;font-size:18px;line-height:1.2}
+.chat .top small{color:#5E6A63;font-weight:700;font-size:14px;display:flex;align-items:center;gap:6px}
+.chat .top small::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--green)}
+.chat .top svg{margin-left:auto;width:24px;height:24px;color:#7C8796}
+.msgs{flex:1 1 0;min-height:0;display:flex;flex-direction:column;justify-content:flex-end;gap:10px;padding:16px;overflow:hidden;background-image:radial-gradient(rgba(0,0,0,.05) 1px,transparent 1px);background-size:16px 16px}
+.day{align-self:center;background:#fff;color:#5E6A63;border-radius:8px;padding:3px 12px;font-size:13px;font-weight:900;letter-spacing:.04em;text-transform:uppercase;margin-bottom:4px}
+.m{max-width:86%;padding:9px 12px 7px;border-radius:14px;font-size:16px;line-height:1.38;color:#1D2420;box-shadow:0 1px 1px rgba(0,0,0,.08);animation:pop .35s ease both}
+.m.p{align-self:flex-end;background:#D9FDD3;border-top-right-radius:4px}
+.m.b{align-self:flex-start;background:#fff;border-top-left-radius:4px}
+.m.card{border:2px solid #7FD3AE}
+.m em{display:block;text-align:right;font-style:normal;font-size:12px;color:#7A857F;margin-top:2px}
+.m.p em::after{content:" ✓✓";color:#53BDEB;letter-spacing:-2px}
+.m strong{font-weight:900}
+.m .row{display:block}
+.tp{align-self:flex-start;background:#fff;border-radius:14px;border-top-left-radius:4px;padding:12px 14px;display:flex;gap:4px;animation:pop .3s ease both}
+.tp i{width:7px;height:7px;border-radius:50%;background:#9AA39E;animation:dot 1s infinite}
+.tp i:nth-child(2){animation-delay:.15s}.tp i:nth-child(3){animation-delay:.3s}
+@keyframes dot{30%{transform:translateY(-4px);opacity:.5}}
+@keyframes pop{from{opacity:0;transform:translateY(8px) scale(.98)}}
+.done{align-self:center;background:var(--green);color:#fff;font-weight:900;font-size:13px;border-radius:999px;padding:4px 12px;animation:pop .35s ease both}
+.chat .in{background:#F7F7F5;display:flex;align-items:center;gap:10px;padding:12px 14px;border-top:1px solid #E2DED6}
+.chat .in span{flex:1;background:#fff;border-radius:999px;padding:10px 16px;color:#9AA39E;font-weight:700;font-size:15px}
+.chat .in b{width:42px;height:42px;border-radius:50%;background:var(--green);display:grid;place-items:center;color:#fff}
+
+/* правая колонка */
+.side{display:grid;gap:18px;grid-template-rows:auto auto 1fr auto;min-width:0}
+.cards2{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.c{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.14);border-radius:22px;padding:18px 20px;position:relative;min-width:0}
+.lab{font-size:13px;font-weight:900;letter-spacing:.09em;text-transform:uppercase;color:var(--nt)}
+.lab svg{width:14px;height:14px;vertical-align:-2px;margin-right:6px}
+.big{font-family:var(--disp);font-weight:800;font-size:clamp(30px,3vw,44px);line-height:1.05;margin-top:6px;font-variant-numeric:tabular-nums}
+.c.off .zz{position:absolute;right:18px;bottom:20px;display:flex}
+.c.off .zz span{width:30px;height:30px;border-radius:50%;background:#3A4683;border:2px solid var(--n1);margin-left:-8px;display:grid;place-items:center;font-size:14px}
+.c.off .z{position:absolute;right:14px;top:16px;font-family:var(--disp);font-weight:800;color:var(--nm);font-size:14px;animation:zz 2.4s ease-in-out infinite}
+.c.off .z:nth-of-type(2){right:28px;top:30px;font-size:11px;animation-delay:.6s}
+@keyframes zz{50%{transform:translate(4px,-6px);opacity:.3}}
+.c.wait{padding-right:92px}.c.wait .big{color:#7CF0B9}
+.c.wait .on{display:flex;align-items:center;gap:7px;font-weight:800;color:#7CF0B9;font-size:15px;margin-top:4px}
+.c.wait .on::before{content:"";width:9px;height:9px;border-radius:50%;background:var(--green)}
+.ring{position:absolute;right:18px;top:50%;transform:translateY(-50%);width:62px;height:62px;border-radius:50%;border:4px solid #7CF0B9;box-shadow:0 0 22px rgba(124,240,185,.35)}
+.ring::before,.ring::after{content:"";position:absolute;left:50%;top:50%;width:3px;background:#7CF0B9;border-radius:2px;transform-origin:50% 0}
+.ring::before{height:18px;transform:translateX(-50%) rotate(180deg)}
+.ring::after{height:14px;transform:translateX(-50%) rotate(-60deg);animation:hand 6s linear infinite}
+@keyframes hand{to{transform:translateX(-50%) rotate(300deg)}}
+
+.brain .hd{display:flex;align-items:center;gap:14px;margin-bottom:14px}
+.brain .orb{width:52px;height:52px;border-radius:50%;background:radial-gradient(circle at 35% 30%,#3D4BA0,var(--n0));border:3px solid #7CF0B9;display:grid;place-items:center;color:var(--yellow);font-size:22px;box-shadow:0 0 18px rgba(124,240,185,.3)}
+.brain .hd b{font-family:var(--disp);font-size:19px;display:block}
+.brain .hd small{color:#7CF0B9;font-weight:800;font-size:14px}
+.bcols{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,1fr);gap:16px}
+.know{display:grid;gap:9px}
+.k{display:flex;align-items:center;gap:10px;border:1px solid rgba(255,255,255,.16);border-radius:12px;padding:9px 12px;font-weight:700;font-size:15px;color:var(--nt);transition:border-color .4s,background .4s,color .4s}
+.k .ck{flex:none;width:22px;height:22px;border-radius:50%;border:2px solid var(--nm);display:grid;place-items:center;transition:.4s}
+.k .ck svg{width:12px;height:12px;opacity:0;color:var(--n0);transition:.3s}
+.k .v{margin-left:auto;font-weight:900;color:var(--yellow);white-space:nowrap}
+.k.ok{border-color:rgba(124,240,185,.55);background:rgba(124,240,185,.08);color:#fff}
+.k.ok .ck{background:#7CF0B9;border-color:#7CF0B9}
+.k.ok .ck svg{opacity:1}
+.does{list-style:none;display:grid;gap:12px;align-content:start}
+.does .lab{margin-bottom:2px}
+.does li{display:flex;gap:10px;align-items:center;font-weight:800;font-size:15px;color:var(--nm);transition:color .4s}
+.does li::before{content:"";flex:none;width:9px;height:9px;border-radius:50%;background:var(--nm);transition:.4s}
+.does li.ok{color:#fff}
+.does li.ok::before{background:#7CF0B9;box-shadow:0 0 0 4px rgba(124,240,185,.2)}
+.does li.now{color:#fff}
+.does li.now::before{background:var(--yellow);animation:pulse 1s infinite}
+
+.list .lhd{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;gap:10px}
+.list .lhd small{font-weight:800;color:var(--nm);font-size:14px}
+.rows{display:grid;gap:8px;min-height:96px}
+.r{display:flex;align-items:center;gap:12px;background:rgba(255,255,255,.07);border-radius:12px;padding:8px 12px;font-size:15px;font-weight:700;color:var(--nt);animation:slide .5s ease both}
+.r .a{flex:none;width:30px;height:30px;border-radius:50%;background:var(--yellow);color:var(--ink);display:grid;place-items:center;font-weight:900;font-size:14px}
+.r b{color:#fff}
+.r .when{margin-left:auto;font-weight:900;color:#fff;white-space:nowrap}
+.r .new{background:var(--green);color:#fff;font-size:12px;font-weight:900;border-radius:999px;padding:2px 8px;margin-left:8px}
+.r.ph{background:transparent;border:2px dashed rgba(255,255,255,.18);color:var(--nm);justify-content:center;animation:none}
+@keyframes slide{from{opacity:0;transform:translateX(-14px)}}
+
+.langs{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}
+.chips{display:flex;gap:8px}
+.chips span{background:rgba(255,255,255,.1);border-radius:10px;padding:6px 14px;font-weight:900;font-size:15px;color:var(--nt);transition:.4s}
+.chips span.on{background:var(--green);color:#fff}
+
+@media(max-width:980px){.pgrid{grid-template-columns:1fr}.chat{height:540px}}
+@media(max-width:560px){.c.wait{padding-right:14px}.panel{padding:66px 12px 14px;border-radius:24px}.ptop{font-size:13px;padding:6px 14px 6px 8px}.cards2{grid-template-columns:1fr 1fr;gap:10px}.c{padding:14px}.ring{display:none}.bcols{grid-template-columns:1fr}.big{font-size:30px}.c.off .zz{display:none}}
+
+/* ======= кейсы ======= */
 section{padding:84px 0 0}
-.head{margin-bottom:34px;display:grid;gap:12px}
+.head{display:flex;justify-content:space-between;align-items:end;gap:24px;flex-wrap:wrap;margin-bottom:30px}
+.head p{color:var(--muted);max-width:46ch;font-size:18px}
+.cases{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px}
+.case{background:var(--paper);border:3px solid var(--ink);border-radius:26px;padding:24px;box-shadow:0 6px 0 var(--ink);display:flex;flex-direction:column;gap:12px}
+.case .ct{display:flex;align-items:center;gap:12px}
+.case .lg{width:48px;height:48px;border-radius:14px;border:3px solid var(--ink);display:grid;place-items:center;font-family:var(--disp);font-weight:800;font-size:20px;flex:none}
+.case h3{font-size:20px;line-height:1.2}
+.case .nic{color:var(--muted);font-weight:800;font-size:14px}
+.case p{font-size:17px}
+.case .st{margin-top:auto;display:flex;align-items:center;gap:8px;font-weight:900;font-size:15px;color:var(--green)}
+.case .st::before{content:"";width:10px;height:10px;border-radius:50%;background:var(--green);box-shadow:0 0 0 4px rgba(34,181,115,.18)}
+.case .num{font-family:var(--disp);font-weight:800;font-size:40px;line-height:1;color:var(--blue)}
+.cnote{margin-top:22px;color:var(--muted);font-size:16px;font-weight:700}
+@media(max-width:900px){.cases{grid-template-columns:1fr}}
 
-/* timeline */
-.tl{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
-.ev{background:var(--paper);border:3px solid var(--ink);border-radius:22px;padding:20px;position:relative}
-.ev time{display:inline-block;font-family:var(--disp);font-weight:800;font-size:15px;padding:4px 10px;border-radius:10px;background:var(--sky);margin-bottom:12px}
-.ev.n{background:var(--night);color:#fff} .ev.n time{background:#33408F} .ev.n p{color:#D6DCFF}
-.ev.h{background:#FFF1C9}
-.ev h3{font-size:18px;line-height:1.25;margin-bottom:8px}
-.ev p{font-size:16px;color:var(--muted)}
-.ev q{display:block;margin-top:10px;font-weight:800;font-size:15px;background:#fff;color:var(--ink);border-radius:14px;padding:8px 12px;border:2px solid var(--ink)}
+/* ======= FAQ ======= */
+.faqg{display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr);gap:48px;align-items:start}
+.faqg .l p{color:var(--muted);margin-top:14px}
+.faqg .l .btn{margin-top:22px}
+.faq{display:grid;gap:12px}
+.faq details{background:var(--paper);border:3px solid var(--ink);border-radius:20px;overflow:hidden}
+.faq summary{list-style:none;cursor:pointer;padding:18px 22px;font-weight:900;font-size:18px;display:flex;justify-content:space-between;gap:16px;align-items:center}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{content:"+";flex:none;width:32px;height:32px;border-radius:50%;background:var(--yellow);border:2px solid var(--ink);display:grid;place-items:center;font-family:var(--disp);font-size:18px;transition:transform .25s}
+.faq details[open] summary::after{transform:rotate(45deg)}
+.faq details p{padding:0 22px 20px;color:var(--muted)}
+@media(max-width:900px){.faqg{grid-template-columns:1fr;gap:24px}}
 
-/* what */
-.what{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
-.w{background:var(--paper);border:3px solid var(--ink);border-radius:22px;padding:22px}
-.w .ic{width:46px;height:46px;border-radius:14px;border:3px solid var(--ink);display:grid;place-items:center;margin-bottom:14px;font-family:var(--disp);font-weight:800}
-.w h3{font-size:18px;line-height:1.25;margin-bottom:8px}
-.w p{font-size:16px;color:var(--muted)}
-.more{margin-top:18px;font-weight:800;color:var(--muted)}
+/* ======= финал ======= */
+.final{margin:84px 0 0;background:radial-gradient(90% 120% at 100% 100%,#2E3C92 0%,var(--n1) 45%,var(--n0) 100%);color:#fff;border:3px solid var(--ink);border-radius:34px;padding:clamp(32px,6vw,72px);box-shadow:0 10px 0 var(--ink);position:relative;overflow:hidden}
+.final .kick{color:#7CF0B9;font-weight:900;font-size:16px}
+.final h2{font-size:clamp(32px,5vw,64px);line-height:1.05;margin-top:10px;max-width:18ch}
+.final p{color:var(--nt);font-size:19px;max-width:56ch;margin-top:18px}
+.final .cta{margin-top:30px}
+.final .btn.alt{background:transparent;color:#fff;border-color:#fff;box-shadow:0 5px 0 #fff}
+.final .btn.alt:hover{box-shadow:0 3px 0 #fff}
+.final .as{margin-top:22px;display:flex;flex-wrap:wrap;gap:10px 22px;color:var(--nt);font-weight:800;font-size:15px}
+.final .as span{display:flex;align-items:center;gap:8px}
+.final .as span::before{content:"";width:8px;height:8px;border-radius:50%;background:#7CF0B9}
+.final .moon{position:absolute;right:clamp(-40px,4vw,70px);top:clamp(-30px,3vw,50px);width:clamp(120px,16vw,200px);aspect-ratio:1;border-radius:50%;background:var(--yellow);box-shadow:inset -26px -10px 0 #E8AE1E,0 0 60px rgba(255,201,60,.35);opacity:.95}
+@media(max-width:700px){.final .moon{opacity:.25}}
 
-/* chats */
-.chats{display:grid;grid-template-columns:1fr 1fr;gap:28px}
-.phone{background:#E8F2EA;border:3px solid var(--ink);border-radius:30px;overflow:hidden}
-.ph-top{background:#1F7A55;color:#fff;padding:12px 18px;font-weight:800;display:flex;justify-content:space-between;align-items:center}
-.ph-top small{font-weight:700;opacity:.85}
-.msgs{padding:16px;display:flex;flex-direction:column;gap:10px}
-.m{max-width:84%;padding:9px 13px;border-radius:16px;font-size:15.5px;line-height:1.4;border:2px solid rgba(27,35,64,.12)}
-.m.p{align-self:flex-end;background:#D7F8C9;border-radius:16px 16px 4px 16px}
-.m.b{align-self:flex-start;background:#fff;border-radius:16px 16px 16px 4px}
-.m em{display:block;font-style:normal;font-size:12px;font-weight:800;color:var(--muted);margin-bottom:2px}
-.note{font-weight:800;color:var(--muted);margin-bottom:14px}
+/* ======= подвал ======= */
+footer{margin-top:84px;background:var(--paper);border-top:3px solid var(--ink);padding:48px 0 28px}
+.fg{display:grid;grid-template-columns:minmax(0,1.4fr) repeat(3,minmax(0,1fr));gap:32px}
+.fg .logo{font-size:20px}
+.fg .about{color:var(--muted);margin-top:12px;font-size:16px;max-width:34ch}
+.status{display:inline-flex;align-items:center;gap:8px;margin-top:14px;border:2px solid var(--ink);border-radius:999px;padding:4px 12px;font-weight:900;font-size:14px}
+.status::before{content:"";width:9px;height:9px;border-radius:50%;background:var(--green);animation:pulse 1.6s infinite}
+.fg h4{font-family:var(--disp);font-size:15px;margin-bottom:12px}
+.fg ul{list-style:none;display:grid;gap:8px}
+.fg ul a{text-decoration:none;font-weight:700;font-size:16px;color:var(--muted)}
+.fg ul a:hover{color:var(--blue)}
+.legal{margin-top:36px;padding-top:18px;border-top:2px solid #DCE6F5;display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap;color:var(--muted);font-size:14px;font-weight:700}
+@media(max-width:860px){.fg{grid-template-columns:1fr 1fr}}
+@media(max-width:480px){.fg{grid-template-columns:1fr}}
 
-/* who */
-.who{background:var(--paper);border:3px solid var(--ink);border-radius:28px;padding:30px;display:grid;grid-template-columns:auto 1fr;gap:26px;align-items:start}
-.who .ava{width:84px;height:84px;border-radius:24px;background:var(--coral);border:3px solid var(--ink);display:grid;place-items:center;font-family:var(--disp);font-weight:800;font-size:30px;color:#fff}
-.who p{color:var(--muted);margin-top:10px;max-width:68ch}
-
-/* steps */
-.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;counter-reset:s}
-.st{background:var(--paper);border:3px solid var(--ink);border-radius:22px;padding:20px;position:relative}
-.st::before{counter-increment:s;content:counter(s);display:grid;place-items:center;width:40px;height:40px;border-radius:50%;background:var(--blue);color:#fff;font-family:var(--disp);font-weight:800;border:3px solid var(--ink);margin-bottom:14px}
-.st:nth-child(3)::before,.st:nth-child(4)::before{background:var(--yellow);color:var(--ink)}
-.st h3{font-size:17px;line-height:1.25;margin-bottom:8px}
-.st p{font-size:15.5px;color:var(--muted)}
-
-/* price */
-.price{display:grid;grid-template-columns:1fr 1fr;gap:18px;align-items:stretch}
-.pc{border:3px solid var(--ink);border-radius:28px;padding:30px;background:var(--paper);box-shadow:8px 8px 0 var(--ink);display:flex;flex-direction:column;gap:12px}
-.pc.y{background:var(--yellow)}
-.pc .k{font-weight:900;font-size:15px}
-.pc .amt{font-family:var(--disp);font-weight:800;font-size:clamp(36px,4.4vw,54px);line-height:1;white-space:nowrap}
-.pc .amt small{font-family:var(--body);font-size:18px;font-weight:800}
-.pc ul{list-style:none;display:grid;gap:8px;margin-top:6px}
-.pc li{display:flex;gap:10px;font-weight:700}
-.pc li svg{width:20px;height:20px;flex:none;color:var(--green);margin-top:3px}
-.pc.y li svg{color:var(--ink)}
-.terms{margin-top:22px;font-weight:800;display:flex;gap:12px;flex-wrap:wrap}
-.terms span{background:var(--paper);border:3px solid var(--ink);border-radius:999px;padding:6px 14px;font-size:15px}
-
-/* faq */
-.faq{display:grid;gap:12px;max-width:860px}
-details{background:var(--paper);border:3px solid var(--ink);border-radius:20px;padding:16px 20px}
-summary{cursor:pointer;font-weight:900;font-size:18px;list-style:none;display:flex;justify-content:space-between;gap:16px}
-summary::-webkit-details-marker{display:none}
-summary::after{content:"+";font-family:var(--disp);font-size:22px;line-height:1}
-details[open] summary::after{content:"–"}
-details p{margin-top:10px;color:var(--muted)}
-
-/* end */
-.result{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
-.result div{background:var(--paper);border:3px solid var(--ink);border-radius:22px;padding:22px;font-weight:800;font-size:18px}
-.final{margin:84px 0 0;background:var(--night);color:#fff;border:3px solid var(--ink);border-radius:36px;padding:52px 32px;text-align:center;box-shadow:8px 8px 0 var(--ink)}
-.final h2{max-width:22ch;margin:0 auto 14px}
-.final p{color:#D6DCFF;margin:0 auto 26px;max-width:46ch}
-.final small{display:block;margin-top:16px;color:#AFC0FF;font-weight:800}
-footer{padding:40px 0 50px;color:var(--muted);font-size:15px;font-weight:700}
-
-@media (max-width:980px){
-  .steps{grid-template-columns:1fr 1fr}
-  .hero .grid,.chats,.price{grid-template-columns:1fr}
-  .facts{grid-template-columns:1fr 1fr}
-  .tl,.what,.result{grid-template-columns:1fr 1fr}
-  .steps{grid-template-columns:1fr 1fr}
-  .nav ul{display:none}
-  .l-day{left:6px} .l-night{right:6px}
-}
-@media (max-width:600px){
-  .facts,.tl,.what,.steps,.result{grid-template-columns:1fr}
-  .who{grid-template-columns:1fr}
-  .nav .btn span{display:none}
-  .logo span{display:none}
-  .bubble{display:none}
-  .label{font-size:12px;padding:4px 8px}
-  .pc{padding:22px}
-}
-@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
-
-/* hero scene */
-.scene{position:relative;border:3px solid var(--ink);border-radius:32px;overflow:hidden;box-shadow:8px 8px 0 var(--ink);aspect-ratio:956/712;background:#7DB7F0}
-.fr{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity 1.4s ease}
-.fr.on{opacity:1}
-.scene .bubble{position:absolute;max-width:62%;background:#fff;border:3px solid var(--ink);border-radius:18px 18px 18px 4px;padding:8px 12px;font-size:14.5px;font-weight:700;line-height:1.3;opacity:0;transform:translateY(8px) scale(.96);transition:opacity .45s,transform .45s}
-.scene .bubble small{display:block;color:var(--muted);font-weight:800;font-size:12px}
-.scene .b1{left:4%;top:5%}
-.scene .b2{right:4%;top:28%;background:#DFF8EA;border-radius:18px 18px 4px 18px}
-.scene .b3{left:4%;bottom:5%;background:var(--yellow)}
-.scene[data-state="3"] .b1,.scene[data-state="4"] .b1,.scene[data-state="3"] .b2,.scene[data-state="4"] .b2,.scene[data-state="6"] .b3{opacity:1;transform:none}
-.b2 .typing{display:none;gap:4px;padding:4px 0}
-.b2 .typing i{width:7px;height:7px;border-radius:50%;background:var(--muted);animation:dot 1s infinite}
-.b2 .typing i:nth-child(2){animation-delay:.15s}.b2 .typing i:nth-child(3){animation-delay:.3s}
-@keyframes dot{50%{transform:translateY(-4px);opacity:.5}}
-.scene.typing .b2 .typing{display:inline-flex}.scene.typing .b2 .txt{display:none}
-.clock{margin-top:22px;background:var(--paper);border:3px solid var(--ink);border-radius:22px;padding:14px 16px;display:grid;grid-template-columns:1fr auto;gap:10px 14px;align-items:center}
-.clock .now{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
-.clock .now b{font-family:var(--disp);font-size:26px;font-variant-numeric:tabular-nums}
-.clock .now span{font-weight:900;font-size:15px;padding:5px 12px;border-radius:999px;border:2px solid var(--ink)}
-.who-bot{background:var(--night);color:#fff}.who-mgr{background:var(--yellow)}.who-off{background:#FFD9D3}
-.clock input{grid-column:1/-1;width:100%;accent-color:var(--blue);height:8px}
-.ticks7{grid-column:1/-1;display:flex;justify-content:space-between;font-size:12px;font-weight:800;color:var(--muted)}
-.play{grid-column:2;grid-row:1;width:40px;height:40px;border-radius:50%;border:3px solid var(--ink);background:var(--yellow);font-weight:900;cursor:pointer}
-/* icons */
-.w .icon{width:72px;height:72px;border-radius:18px;margin-bottom:12px;display:block}
-.w .icon.q{display:grid;place-items:center;border:3px solid var(--ink);font-family:var(--disp);font-size:30px;background:#fff;width:72px}
-/* iphone */
-.iphone{position:relative;border:10px solid #111;border-radius:46px;background:#EFE7DD;overflow:hidden;max-width:380px;margin:0 auto;width:100%;box-shadow:8px 8px 0 var(--ink)}
-.island{position:absolute;top:8px;left:50%;transform:translateX(-50%);width:92px;height:26px;border-radius:20px;background:#111;z-index:2}
-.wa-top{display:flex;align-items:center;gap:10px;padding:44px 14px 10px;background:#F7F7F7;border-bottom:1px solid #ddd}
-.wa-top .back{font-size:28px;color:#0A84FF;line-height:1}
-.wa-top .av{width:34px;height:34px;border-radius:50%;background:var(--blue);color:#fff;display:grid;place-items:center;font-weight:900}
-.wa-top b{display:block;font-size:15px}.wa-top small{color:#8a8a8a;font-size:12px;font-weight:700}
-.iphone .msgs{padding:12px 10px 18px;display:flex;flex-direction:column;gap:6px;min-height:520px;background:#EFE7DD;background-image:radial-gradient(rgba(0,0,0,.035) 1px,transparent 1px);background-size:14px 14px}
-.iphone .day{align-self:center;background:#fff;border-radius:8px;padding:2px 10px;font-size:12px;font-weight:800;color:#666;margin-bottom:6px}
-.iphone .m{max-width:82%;font-size:14.5px;line-height:1.35;padding:7px 10px;border:0;box-shadow:0 1px 0 rgba(0,0,0,.12);transition:opacity .35s,transform .35s}
-.iphone .m.p{background:#DCF8C6;border-radius:12px 12px 4px 12px}
-.iphone .m.b{background:#fff;border-radius:12px 12px 12px 4px}
-.iphone .m::after{content:attr(data-t) " ✓✓";display:block;text-align:right;font-size:11px;color:#8a8a8a;margin-top:2px}
-.iphone .m.b::after{content:attr(data-t)}
-.iphone .m.hide{opacity:0;transform:translateY(6px);display:none}
-.iphone .tp{align-self:flex-start;background:#fff;border-radius:12px;padding:9px 12px;display:inline-flex;gap:4px;box-shadow:0 1px 0 rgba(0,0,0,.12)}
-.iphone .tp i{width:7px;height:7px;border-radius:50%;background:#999;animation:dot 1s infinite}
-.iphone .tp i:nth-child(2){animation-delay:.15s}.iphone .tp i:nth-child(3){animation-delay:.3s}
-@media (max-width:600px){.scene .bubble{font-size:12.5px;max-width:70%}.clock .now b{font-size:20px}.ticks7 span:nth-child(even){visibility:hidden}}
-.scene .bubble{display:block}
-
-.logo img.me{width:34px;height:34px;border-radius:10px;border:3px solid var(--ink);object-fit:cover;display:block}
-.who img.ava{width:150px;height:150px;border-radius:24px;border:3px solid var(--ink);object-fit:contain;background:#fff;display:block}
-.scene .b3{top:auto!important;bottom:5%;left:4%;right:auto;max-width:58%;height:auto}
-.scene .b3 b{display:block;font-size:15px;margin-bottom:4px}
-.scene .b3 ul{list-style:none;display:grid;gap:3px;font-size:13px;font-weight:700}
-.scene .b3 li{display:flex;gap:8px;background:rgba(255,255,255,.55);border-radius:8px;padding:3px 8px}
-.scene .b3 li span{font-weight:900;min-width:64px}
-.slider{grid-column:1/-1;position:relative;height:34px;cursor:pointer;touch-action:none}
-.slider .trk{position:absolute;left:14px;right:14px;top:13px;height:8px;border-radius:9px;background:linear-gradient(90deg,#BFE6FF 0%,#FFD580 30%,#FF9C6B 40%,#2B3577 52%,#2B3577 78%,#FFC6A0 88%,#BFE6FF 100%);border:2px solid var(--ink)}
-.slider .fill{display:none}
-.slider .knob{position:absolute;top:0;width:34px;height:34px;margin-left:-17px;border-radius:50%;background:var(--paper);border:3px solid var(--ink);display:grid;place-items:center;box-shadow:0 3px 0 var(--ink);transition:left .9s cubic-bezier(.4,0,.2,1)}
-.slider.drag .knob{transition:none}
-.slider .kic{font-size:15px;line-height:1}
-.slider:focus-visible .knob{outline:3px solid var(--blue);outline-offset:2px}
-.ticks7{padding:0 2px}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
 </style>
 </head>
 <body>
 <header><div class="wrap nav">
-  <a class="logo" href="#top"><img class="me" src="img/daulet.webp" alt="Даулет" width="34" height="34">Даулет</a>
-  <ul><li><a href="#how">Как работает</a></li><li><a href="#example">Пример</a></li><li><a href="#price">Цена</a></li><li><a href="#faq">Вопросы</a></li></ul>
+  <a class="logo" href="#top"><img src="img/daulet.webp" alt="Даулет" width="36" height="36">Даулет</a>
+  <ul><li><a href="#bot">Как работает</a></li><li><a href="#cases">Кейсы</a></li><li><a href="#faq">Вопросы</a></li></ul>
   <a class="btn" href="https://wa.me/77086457576?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5%2C%20%D0%94%D0%B0%D1%83%D0%BB%D0%B5%D1%82%21%20%D0%B8%D0%BD%D1%82%D0%B5%D1%80%D0%B5%D1%81%D1%83%D0%B5%D1%82%20%D0%B1%D0%BE%D1%82%20%D0%B4%D0%BB%D1%8F%20%D0%BD%D0%B0%D1%88%D0%B5%D0%B9%20%D1%88%D0%BA%D0%BE%D0%BB%D1%8B." target="_blank" rel="noopener"><span>Написать в WhatsApp</span><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm4.5 12.1c-.2-.1-1.5-.7-1.7-.8s-.4-.1-.6.1-.7.8-.8 1-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4.3-.4.7-1.3.1-.2 0-.3 0-.4l-.8-1.9c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.7 11.9 11.9 0 0 0 4.6 4c1.7.7 2.4.8 3.2.7a2.8 2.8 0 0 0 1.8-1.3 2.3 2.3 0 0 0 .2-1.3c-.1-.1-.2-.2-.5-.3z"/></svg></a>
 </div></header>
 
 <main id="top">
 <div class="wrap">
-  <div class="hero"><div class="grid">
-    <div>
-      <span class="tagline">Для частных школ Алматы</span>
-      <h1>Родители пишут вечером. <mark>Ваша школа отвечает сразу.</mark></h1>
-      <p class="lead">Бот в WhatsApp школы. Днём родителям отвечают ваши менеджеры, как и сейчас. Вечером, ночью, в выходные и праздники отвечает бот: на казахском и русском, по данным вашей школы. Записывает на экскурсию или день открытых дверей. Утром менеджер видит готовые записи.</p>
-      <div class="cta">
-        <a class="btn" href="https://wa.me/77086457576?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5%2C%20%D0%94%D0%B0%D1%83%D0%BB%D0%B5%D1%82%21%20%D1%85%D0%BE%D1%87%D1%83%20%D0%B4%D0%B5%D0%BC%D0%BE-%D0%B1%D0%BE%D1%82%D0%B0%20%D0%B4%D0%BB%D1%8F%20%D0%BD%D0%B0%D1%88%D0%B5%D0%B9%20%D1%88%D0%BA%D0%BE%D0%BB%D1%8B." target="_blank" rel="noopener">Хочу такого бота</a>
-        <a class="btn alt" href="#example">Как отвечает бот</a>
-      </div>
-      <p class="under">Номер WhatsApp школы не меняется · казахский и русский</p>
-    </div>
-    <div class="art">
-      <div class="scene" id="scene" data-state="3">
-        <img class="fr" src="img/school0.webp" alt="" width="956" height="712">
-        <img class="fr" src="img/school1.webp" alt="" width="956" height="712" loading="lazy">
-        <img class="fr" src="img/school2.webp" alt="" width="956" height="712" loading="lazy">
-        <img class="fr on" src="img/school3.webp" alt="Школа ночью: горит одно окно, бот отвечает родителю" width="956" height="712">
-        <img class="fr" src="img/school4.webp" alt="" width="956" height="712" loading="lazy">
-        <img class="fr" src="img/school5.webp" alt="" width="956" height="712" loading="lazy">
-        <img class="fr" src="img/school6.webp" alt="" width="956" height="712" loading="lazy">
-        <div class="bubble b1"><small>22:40 · родитель</small>Есть места в 1 класс на следующий год?</div>
-        <div class="bubble b2"><small>22:41 · бот школы</small><span class="typing"><i></i><i></i><i></i></span><span class="txt">Да, набор открыт. Записать вас на экскурсию во вторник в 16:00?</span></div>
-        <div class="bubble b3"><small>9:00 · список менеджеру</small><b>За ночь записаны 3 семьи</b><ul><li><span>Айгерим</span>1 класс · вт 16:00</li><li><span>Динара</span>предшкола · сб 11:00</li><li><span>Асхат</span>5 класс · перезвонить</li></ul></div>
-      </div>
-      <div class="clock">
-        <div class="now"><b id="clkTime">22:40</b><span id="clkWho" class="who-bot">Отвечает бот</span></div>
-        <div class="slider" id="clkRange" role="slider" tabindex="0" aria-label="Время суток" aria-valuemin="0" aria-valuemax="6" aria-valuenow="3"><div class="trk"><div class="fill"></div></div><div class="knob"><span class="kic">☾</span></div></div>
-        <div class="ticks7"><span>9:00</span><span>17:30</span><span>19:00</span><span>22:40</span><span>23:10</span><span>6:30</span><span>9:00</span></div>
-        <button type="button" class="play" id="clkPlay" aria-label="Пауза">❚❚</button>
+  <div class="hero" id="bot">
+    <span class="tag"><i></i>Для частных школ Алматы</span>
+    <div class="htop">
+      <h1>Ответ каждому родителю сразу. <span>Даже в 23:00.</span></h1>
+      <div>
+        <p class="sub">Бот в WhatsApp школы отвечает на вопросы о классах, приёме и документах и записывает на экскурсию вечером, ночью, в выходные и праздники. Утром менеджеры берут только тех, кому нужен живой человек.</p>
+        <ul class="pts">
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12.5l5 5L20 6.5"/></svg>Родитель получает ответ в тот же вечер, а не в понедельник</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12.5l5 5L20 6.5"/></svg>Одни и те же вопросы про места, приём и адрес бот берёт на себя</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12.5l5 5L20 6.5"/></svg>Отвечает на казахском и русском, как родитель написал</li>
+        </ul>
       </div>
     </div>
-  </div></div>
+    <div class="cta">
+      <a class="btn" href="https://wa.me/77086457576?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5%2C%20%D0%94%D0%B0%D1%83%D0%BB%D0%B5%D1%82%21%20%D1%85%D0%BE%D1%87%D1%83%20%D0%B4%D0%B5%D0%BC%D0%BE-%D0%B1%D0%BE%D1%82%D0%B0%20%D0%B4%D0%BB%D1%8F%20%D0%BD%D0%B0%D1%88%D0%B5%D0%B9%20%D1%88%D0%BA%D0%BE%D0%BB%D1%8B." target="_blank" rel="noopener">Хочу такого бота</a>
+      <a class="btn alt" href="#cases">Где уже работает</a>
+    </div>
+    <p class="under">Демо 10 000 ₸ · потом 30 000 ₸ в месяц · номер WhatsApp школы тот же</p>
 
-  <div class="facts">
-    <div class="fact"><h3>Ночью менеджеры не работают</h3><p>Ни в одной школе. А родители пишут и вечером, и ночью, и в субботу.</p></div>
-    <div class="fact"><h3>Ответ сразу, а не в понедельник</h3><p>Бот отвечает в течение минуты, пока менеджеров нет.</p></div>
-    <div class="fact"><h3>Казахский и русский</h3><p>Родитель пишет на своём языке, бот отвечает на нём же.</p></div>
-    <div class="fact"><h3>Номер тот же</h3><p>Родители пишут в ваш WhatsApp, как и раньше. Днём бот молчит.</p></div>
+    <!-- панель -->
+    <div class="panel" aria-label="Пример: бот школы отвечает родителю вечером и записывает на экскурсию">
+      <div class="stars" aria-hidden="true"><i style="left:8%;top:6%"></i><i style="left:30%;top:4%;animation-delay:1s"></i><i style="left:63%;top:7%;animation-delay:.5s"></i><i style="left:78%;top:3%;animation-delay:1.6s"></i><i style="left:92%;top:9%;animation-delay:.9s"></i></div>
+      <div class="ptop"><i></i><span id="ptopTxt">Бот школы · отвечает и записывает на экскурсию</span></div>
+      <div class="pgrid">
+        <div class="chat" aria-hidden="true">
+          <div class="top"><span class="av" id="chAv">Ш</span><div><b id="chName">Школа «Пример»</b><small>бот · в сети</small></div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.5c.9.3 1.9.6 2.8.7a2 2 0 0 1 1.7 2z"/></svg></div>
+          <div class="msgs" id="msgs"></div>
+          <div class="in"><span>Сообщение</span><b><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"><path d="M12 19V5M5 12l7-7 7 7"/></svg></b></div>
+        </div>
+
+        <div class="side">
+          <div class="cards2">
+            <div class="c off"><div class="lab"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>Менеджеры дома</div><div class="big" id="clock">22:40</div><span class="z">z</span><span class="z">z</span><div class="zz" aria-hidden="true"><span>😴</span><span>😴</span></div></div>
+            <div class="c wait"><div class="lab">Родитель ждал</div><div class="big" id="waited">0 мин</div><div class="on">бот · в сети</div><div class="ring" aria-hidden="true"></div></div>
+          </div>
+
+          <div class="c brain">
+            <div class="hd"><span class="orb">✦</span><div><b>Бот школы</b><small>отвечает по данным вашей школы</small></div></div>
+            <div class="bcols">
+              <div class="know" id="know">
+                <div class="k"><span class="ck"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12.5l5 5L20 6.5"/></svg></span><span class="t">Набор · 1 класс</span><span class="v">открыт</span></div>
+                <div class="k"><span class="ck"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12.5l5 5L20 6.5"/></svg></span><span class="t">Приём</span><span class="v">собеседование</span></div>
+                <div class="k"><span class="ck"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12.5l5 5L20 6.5"/></svg></span><span class="t">Экскурсии</span><span class="v">вт, чт 16:00</span></div>
+                <div class="k"><span class="ck"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12.5l5 5L20 6.5"/></svg></span><span class="t">Цена</span><span class="v">скажет менеджер</span></div>
+              </div>
+              <ul class="does" id="does">
+                <li class="lab" style="color:var(--nt)">Что делает</li>
+                <li>смотрит, какие классы набирают</li>
+                <li>предлагает свободное время</li>
+                <li>записывает родителя</li>
+                <li>ставит в список на утро</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="c list">
+            <div class="lhd"><span class="lab">Список менеджеру на 9:00</span><small id="lcount">0 записей</small></div>
+            <div class="rows" id="rows"><div class="r ph">Новые записи появятся здесь</div></div>
+          </div>
+
+          <div class="c langs"><span class="lab">Языки</span><div class="chips"><span id="lgRu" class="on">Русский</span><span id="lgKz">Қазақша</span></div></div>
+        </div>
+      </div>
+    </div>
   </div>
 
-  <section id="how">
-    <div class="head"><h2>Выходные в WhatsApp школы с ботом</h2></div>
-    <div class="tl">
-      <div class="ev n"><time>Пятница, 22:40</time><h3>Родитель пишет в школу</h3><p>Менеджеры уже дома.</p><q>Здравствуйте, есть места в 1 класс на следующий год? Как проходит приём?</q></div>
-      <div class="ev n"><time>Пятница, 22:41</time><h3>Бот отвечает</h3><p>Какие классы набираются, как проходит приём, какие документы нужны. Предлагает день открытых дверей в субботу или экскурсию во вторник.</p></div>
-      <div class="ev n"><time>Пятница, 22:44</time><h3>Родитель записан</h3><p>Выбрал вторник, 16:00. Бот записал имя, номер и класс ребёнка.</p></div>
-      <div class="ev"><time>Суббота, 10:00</time><h3>Менеджер открывает список</h3><p>Кто писал, что спрашивал, на когда записан. Звонит или пишет, чтобы подтвердить.</p></div>
-      <div class="ev h"><time>Наурыз, 21 марта, 15:20</time><h3>Школа отдыхает</h3><p>Бот отвечает на казахском и записывает на экскурсию после праздников.</p><q>Сәлеметсіз бе, 5-сыныпқа орын бар ма?</q></div>
-      <div class="ev"><time>Первый рабочий день, 9:00</time><h3>Все записи за праздники в одном списке</h3><p>Никого не нужно искать по переписке.</p></div>
+  <!-- кейсы -->
+  <section id="cases">
+    <div class="head"><h2>Что я уже сделал и что работает</h2><p>В школах пока не запускал. Вот что работает у клиентов в других нишах.</p></div>
+    <div class="cases">
+      <article class="case">
+        <div class="ct"><span class="lg" style="background:var(--yellow)">П</span><div><h3>«Прийду»</h3><span class="nic">Косметолог · Астана</span></div></div>
+        <p>Онлайн-запись, панель врача и бот в WhatsApp. Бот сам отвечает клиентам, записывает на приём и напоминает накануне.</p>
+        <p>Для школы то же самое, только вместо процедуры экскурсия или день открытых дверей.</p>
+        <span class="st">Работает каждый день</span>
+      </article>
+      <article class="case">
+        <div class="ct"><span class="lg" style="background:#BFD3FF">E</span><div><h3>Eagleway</h3><span class="nic">Логистика</span></div></div>
+        <p>ИИ-агент на сайте логистической компании. Отвечает клиентам на вопросы, пока менеджеры заняты.</p>
+        <span class="st">Работает</span>
+      </article>
+      <article class="case">
+        <div class="ct"><span class="lg" style="background:#C8F2DD">M</span><div><h3>Max Evirma Club</h3><span class="nic">Закрытое сообщество</span></div></div>
+        <div class="num">633</div>
+        <p>участника в клубе на платформе, которую я сделал.</p>
+        <span class="st">Работает</span>
+      </article>
     </div>
+    <p class="cnote">Сейчас делаю сайт для школы искусств BIART (BI Group).</p>
   </section>
 
-  <section>
-    <div class="head"><h2>Что делает бот, пока менеджеров нет</h2></div>
-    <div class="what">
-      <div class="w"><img class="icon" src="img/moon.webp" alt="" width="240" height="240"><h3>Отвечает вечером, ночью, в выходные и праздники</h3><p>Часы работы выставляете вы. Например, с 19:00 до 9:00 и все выходные.</p></div>
-      <div class="w"><img class="icon" src="img/book.webp" alt="" width="240" height="240"><h3>Отвечает по данным вашей школы</h3><p>Классы, программа, приём и тестирование, документы, адрес, продлёнка, питание, подвоз, кружки. Цену называет, только если вы разрешили.</p></div>
-      <div class="w"><img class="icon" src="img/lang.webp" alt="" width="240" height="240"><h3>Говорит на казахском и русском</h3><p>На каком языке родитель написал, на том и отвечает.</p></div>
-      <div class="w"><img class="icon" src="img/cal.webp" alt="" width="240" height="240"><h3>Записывает на день открытых дверей или экскурсию</h3><p>В те дни и часы, которые вы указали.</p></div>
-      <div class="w"><img class="icon" src="img/list.webp" alt="" width="240" height="240"><h3>Утром отдаёт менеджеру список</h3><p>Кто писал, что спрашивал, на когда записан, кому нужно перезвонить.</p></div>
-      <div class="w"><div class="icon q">?</div><h3>Не выдумывает</h3><p>Если ответа нет в данных школы, говорит: «Уточню у менеджера, вам напишут утром». И ставит родителя в утренний список.</p></div>
-    </div>
-    <p class="more">Дальше можно подключить сайт под ваш Instagram и аналитику заявок.</p>
-  </section>
-
-  <section id="example">
-    <div class="head"><h2>Как бот отвечает родителям</h2><p class="note">Пример. Школа и данные выдуманы. Для вашей школы бот отвечает по вашим данным.</p></div>
-    <div class="chats">
-      <div class="iphone"><div class="island"></div><div class="wa-top"><span class="back">‹</span><span class="av">Ш</span><div><b>Школа «Пример»</b><small>в сети</small></div></div><div class="msgs" data-play><div class="day">Пятница</div>
-        <div class="m p" data-t="22:40">Здравствуйте, есть места в 1 класс на следующий год? Сколько стоит?</div>
-        <div class="m b" data-t="22:40">Здравствуйте! Да, набор в 1 класс на следующий год открыт. Перед приёмом проходит собеседование с ребёнком, это минут 20. Стоимость обучения точно назовёт менеджер, он напишет вам в субботу утром. Хотите посмотреть школу? День открытых дверей в эту субботу в 11:00. Ещё можно прийти на экскурсию во вторник или четверг в 16:00.</div>
-        <div class="m p" data-t="22:42">Во вторник удобно.</div>
-        <div class="m b" data-t="22:42">Хорошо. Напишите, пожалуйста, ваше имя и в каком сейчас саду или классе ребёнок.</div>
-        <div class="m p" data-t="22:43">Динара, ребёнок в предшколе.</div>
-        <div class="m b" data-t="22:43">Спасибо, Динара! Вы записаны на экскурсию во вторник в 16:00. Адрес: Алматы, ул. Примерная, 10. Менеджер напишет утром и подтвердит.</div>
-      </div></div>
-      <div class="iphone"><div class="island"></div><div class="wa-top"><span class="back">‹</span><span class="av">М</span><div><b>Мектеп «Мысал»</b><small>желіде</small></div></div><div class="msgs" data-play><div class="day">Сенбі</div>
-        <div class="m p" data-t="23:12">Сәлеметсіз бе. Балам қазір мемлекеттік мектепте 4-сыныпта оқиды. Келесі жылы 5-сыныпқа сіздерге ауыстырғымыз келеді. Орын бар ма?</div>
-        <div class="m b" data-t="23:12">Сәлеметсіз бе! Иә, 5-сыныпқа қабылдау жүріп жатыр. Ауысу үшін әңгімелесу және шағын тест болады. Мектепті көру үшін экскурсияға жазылуға болады: сейсенбі немесе бейсенбі, сағат 16:00. Қай күн ыңғайлы?</div>
-        <div class="m p" data-t="23:13">Бейсенбі.</div>
-        <div class="m b" data-t="23:13">Жақсы. Атыңызды жазыңызшы.</div>
-        <div class="m p" data-t="23:13">Айгүл.</div>
-        <div class="m b" data-t="23:14">Рақмет, Айгүл! Сізді бейсенбі сағат 16:00-ге экскурсияға жаздым. Мекенжай: Алматы, Мысал көшесі, 10. Менеджер дүйсенбі күні таңертең хабарласып, растайды.</div>
-      </div></div>
-    </div>
-  </section>
-
-  <section>
-    <div class="who"><img class="ava" src="img/daulet.webp" alt="Даулет" width="320" height="320"><div>
-      <h2>Кто делает</h2>
-      <p>Меня зовут Даулет, я делаю ботов для WhatsApp. Мой бот уже работает у косметолога в Астане (проект «Прийду»): отвечает клиентам и записывает их на приём.</p>
-      <p>Перед тем как писать школе, я сам проверяю её как родитель: пишу вечером или в выходной и смотрю, через сколько ответят. Перед запуском собираю с вами всё, что спрашивают родители: классы, приём, документы, цены, дни экскурсий.</p>
-    </div></div>
-  </section>
-
-  <section>
-    <div class="head"><h2>Как начать</h2></div>
-    <div class="steps">
-      <div class="st"><h3>Вы получили проверку</h3><p>Скрины: когда я написал в вашу школу как родитель и когда пришёл ответ.</p></div>
-      <div class="st"><h3>Демо за 10 000 ₸</h3><p>Собираю бота на данных вашей школы за день-два и подключаю к вашему WhatsApp. Вы пишете ему сами.</p></div>
-      <div class="st"><h3>30 000 ₸ в месяц</h3><p>Бот работает, я вношу правки и отвечаю, если что-то сломалось.</p></div>
-      <div class="st"><h3>Первый месяц правки бесплатно</h3><p>Поменять ответ, добавить класс, сдвинуть часы работы. Говорите, я исправляю.</p></div>
-    </div>
-  </section>
-
-  <section id="price">
-    <div class="head"><h2>Цена</h2></div>
-    <div class="price">
-      <div class="pc y"><span class="k">Демо, один раз</span><div class="amt">10&nbsp;000&nbsp;₸</div><ul>
-        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12.5l5 5L20 6.5"/></svg>Собираю бота на данных вашей школы</li>
-        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12.5l5 5L20 6.5"/></svg>Подключаю к вашему WhatsApp за день-два</li>
-        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12.5l5 5L20 6.5"/></svg>Вы сами пишете ему как родитель</li></ul></div>
-      <div class="pc"><span class="k">Дальше</span><div class="amt">30&nbsp;000&nbsp;₸ <small>в месяц</small></div><ul>
-        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12.5l5 5L20 6.5"/></svg>Бот работает ночью, в выходные и праздники</li>
-        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12.5l5 5L20 6.5"/></svg>Правки и техподдержка</li>
-        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12.5l5 5L20 6.5"/></svg>Первый месяц все правки бесплатно</li></ul></div>
-    </div>
-    <div class="terms"><span>Без договора на год</span><span>Не подошло, отключаю</span></div>
-  </section>
-
+  <!-- FAQ -->
   <section id="faq">
-    <div class="head"><h2>Вопросы</h2></div>
-    <div class="faq">
-      <details><summary>Что если бот не знает ответа?</summary><p>Не выдумывает. Говорит родителю: «Уточню у менеджера, вам напишут утром». Утром этот родитель стоит в списке у менеджера первым. Потом я добавляю этот ответ в бота.</p></details>
-      <details><summary>Бот понимает казахский?</summary><p>Да. Родитель пишет на казахском, бот отвечает на казахском. Пишет на русском, отвечает на русском.</p></details>
-      <details><summary>Наш номер WhatsApp поменяется?</summary><p>Нет. Родители пишут на тот же номер, что у вас в Instagram и на вывеске.</p></details>
-      <details><summary>Бот будет мешать менеджерам днём?</summary><p>Нет. Бот работает только в часы, которые вы зададите. Например, с 19:00 до 9:00, в выходные и праздники. Днём отвечают менеджеры, как сейчас.</p></details>
-      <details><summary>Что с данными родителей?</summary><p>Бот знает только то, что вы ему дали: классы, программа, адрес, цены. От родителя берёт имя, номер и класс ребёнка, больше ничего. Переписки видите вы и ваш менеджер. Никому их не передаю.</p></details>
-      <details><summary>Можно отключить?</summary><p>Да, в любой момент. Пишете мне, отключаю в тот же день.</p></details>
+    <div class="faqg">
+      <div class="l">
+        <h2>Вопросы владельцев школ</h2>
+        <p>Не нашли свой вопрос? Напишите, отвечу сам.</p>
+        <a class="btn" href="https://wa.me/77086457576?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5%2C%20%D0%94%D0%B0%D1%83%D0%BB%D0%B5%D1%82%21%20%D0%B5%D1%81%D1%82%D1%8C%20%D0%B2%D0%BE%D0%BF%D1%80%D0%BE%D1%81%20%D0%BF%D1%80%D0%BE%20%D0%B1%D0%BE%D1%82%D0%B0." target="_blank" rel="noopener">Задать вопрос</a>
+      </div>
+      <div class="faq">
+        <details open><summary>Как быстро запускается?</summary><p>Демо собираю за день-два. Вы присылаете, что обычно спрашивают родители, или я собираю это с вашего сайта и Instagram, потом уточняю с вами.</p></details>
+        <details><summary>Сколько стоит?</summary><p>Демо 10 000 ₸ один раз. Если оставляете бота, 30 000 ₸ в месяц. Первый месяц все правки бесплатно. Без договора на год.</p></details>
+        <details><summary>Откуда бот знает про нашу школу?</summary><p>Только из того, что вы ему дали: классы, программа, приём и тестирование, документы, адрес, продлёнка, питание, дни экскурсий. Цену называет, только если вы разрешили.</p></details>
+        <details><summary>Что если бот не знает ответа?</summary><p>Не выдумывает. Пишет родителю: «Уточню у менеджера, вам напишут утром». Утром этот родитель стоит в списке у менеджера. Потом я добавляю ответ в бота.</p></details>
+        <details><summary>Наш номер WhatsApp поменяется?</summary><p>Нет. Родители пишут на тот же номер, что у вас в Instagram и на вывеске.</p></details>
+        <details><summary>Бот будет мешать менеджерам днём?</summary><p>Нет. Он работает только в часы, которые вы зададите. Например, с 19:00 до 9:00, в выходные и праздники. Днём отвечают менеджеры, как сейчас.</p></details>
+        <details><summary>Что с данными родителей?</summary><p>От родителя бот берёт имя, номер и класс ребёнка, больше ничего. Переписки видите вы и ваш менеджер. Никому их не передаю.</p></details>
+        <details><summary>Можно отключить?</summary><p>Да, в любой момент. Пишете мне, отключаю в тот же день.</p></details>
+      </div>
     </div>
   </section>
 
-  <section>
-    <div class="head"><h2>Что меняется</h2></div>
-    <div class="result"><div>Родитель, который написал в пятницу вечером, получает ответ в пятницу вечером.</div><div>Утром у менеджера список записей, а не пачка непрочитанных.</div><div>Днём всё как раньше.</div></div>
-  </section>
-
+  <!-- финал -->
   <div class="final">
-    <h2>Посмотрите, как бот отвечает от имени вашей школы</h2>
-    <p>Соберу демо на данных вашей школы за день-два. Вы напишете ему как родитель и решите, оставлять или нет.</p>
-    <a class="btn" href="https://wa.me/77086457576?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5%2C%20%D0%94%D0%B0%D1%83%D0%BB%D0%B5%D1%82%21%20%D1%85%D0%BE%D1%87%D1%83%20%D0%B4%D0%B5%D0%BC%D0%BE-%D0%B1%D0%BE%D1%82%D0%B0%20%D0%B4%D0%BB%D1%8F%20%D0%BD%D0%B0%D1%88%D0%B5%D0%B9%20%D1%88%D0%BA%D0%BE%D0%BB%D1%8B." target="_blank" rel="noopener">Написать в WhatsApp</a>
-    <small>Даулет · +7 708 645 75 76</small>
+    <div class="moon" aria-hidden="true"></div>
+    <div class="kick">Начать с демо</div>
+    <h2>Бот вашей школы через 1–2 дня.</h2>
+    <p>Скиньте сайт или Instagram школы. Я соберу бота на ваших данных и подключу к WhatsApp. Вы напишете ему вечером как родитель и решите, оставлять или нет.</p>
+    <div class="cta">
+      <a class="btn" href="https://wa.me/77086457576?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5%2C%20%D0%94%D0%B0%D1%83%D0%BB%D0%B5%D1%82%21%20%D1%85%D0%BE%D1%87%D1%83%20%D0%B4%D0%B5%D0%BC%D0%BE-%D0%B1%D0%BE%D1%82%D0%B0%20%D0%B4%D0%BB%D1%8F%20%D0%BD%D0%B0%D1%88%D0%B5%D0%B9%20%D1%88%D0%BA%D0%BE%D0%BB%D1%8B." target="_blank" rel="noopener">Хочу демо</a>
+      <a class="btn alt" href="#bot">Как отвечает бот</a>
+    </div>
+    <div class="as"><span>Демо 10 000 ₸</span><span>Первый месяц правки бесплатно</span><span>Не подошло, отключаю</span></div>
   </div>
 </div>
 </main>
-<footer><div class="wrap">© 2026 Даулет. Переписки на сайте показаны для примера.</div></footer>
+
+<footer><div class="wrap">
+  <div class="fg">
+    <div>
+      <a class="logo" href="#top"><img src="img/daulet.webp" alt="" width="36" height="36">Даулет</a>
+      <p class="about">Боты в WhatsApp для частных школ Алматы. Отвечают родителям, когда менеджеров нет.</p>
+      <span class="status">бот на связи вечером и в выходные</span>
+    </div>
+    <div><h4>Бот</h4><ul><li><a href="#bot">Как работает</a></li><li><a href="#faq">Цена</a></li><li><a href="#faq">Вопросы</a></li></ul></div>
+    <div><h4>Кейсы</h4><ul><li><a href="#cases">«Прийду»</a></li><li><a href="#cases">Eagleway</a></li><li><a href="#cases">Max Evirma Club</a></li></ul></div>
+    <div><h4>Связь</h4><ul><li><a href="https://wa.me/77086457576" target="_blank" rel="noopener">WhatsApp: +7 708 645 75 76</a></li><li><a href="https://t.me/marvin_hs" target="_blank" rel="noopener">Telegram: @marvin_hs</a></li></ul></div>
+  </div>
+  <div class="legal"><span>© 2026 Даулет</span><span>Переписки на сайте показаны для примера. Школы и данные выдуманы.</span></div>
+</div></footer>
+
 <script>
 (function(){
 var reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
-var scene=document.getElementById('scene'),frs=scene.querySelectorAll('.fr'),sl=document.getElementById('clkRange'),knob=sl.querySelector('.knob'),kic=sl.querySelector('.kic'),t=document.getElementById('clkTime'),w=document.getElementById('clkWho'),play=document.getElementById('clkPlay');
-var S=[['9:00','Отвечают менеджеры','who-mgr','☀'],['17:30','Отвечают менеджеры','who-mgr','☀'],['19:00','Менеджеры ушли домой','who-off','◐'],['22:40','Родитель пишет, отвечает бот','who-bot','☾'],['23:10','Бот записал на экскурсию','who-bot','☾'],['6:30','Все спят, бот на связи','who-bot','◑'],['9:00','У менеджера готовые записи','who-mgr','☀']];
-var cur=3,timer=null,playing=!reduce;
-function pos(i){return 'calc(14px + (100% - 28px) * '+(i/6)+')'}
-function set(i,typing){cur=i;frs.forEach(function(f,k){f.classList.toggle('on',k===i)});scene.dataset.state=i;knob.style.left=pos(i);kic.textContent=S[i][3];sl.setAttribute('aria-valuenow',i);sl.setAttribute('aria-valuetext',S[i][0]+', '+S[i][1]);t.textContent=S[i][0];w.textContent=S[i][1];w.className=S[i][2];
-  scene.classList.remove('typing');if(i===3&&typing){scene.classList.add('typing');setTimeout(function(){scene.classList.remove('typing')},1300)}}
-function tick(){set((cur+1)%7,true);timer=setTimeout(tick,cur===3?4200:cur===6?4000:2600)}
-function stop(){playing=false;clearTimeout(timer);play.textContent='▶';play.setAttribute('aria-label','Играть')}
-function start(){playing=true;play.textContent='❚❚';play.setAttribute('aria-label','Пауза');clearTimeout(timer);timer=setTimeout(tick,1200)}
-function fromX(x){var r=sl.getBoundingClientRect();var p=(x-r.left-14)/(r.width-28);return Math.max(0,Math.min(6,Math.round(p*6)))}
-sl.addEventListener('pointerdown',function(e){stop();sl.classList.add('drag');sl.setPointerCapture(e.pointerId);set(fromX(e.clientX),true)});
-sl.addEventListener('pointermove',function(e){if(sl.classList.contains('drag')){var i=fromX(e.clientX);if(i!==cur)set(i,true)}});
-sl.addEventListener('pointerup',function(){sl.classList.remove('drag')});
-sl.addEventListener('keydown',function(e){if(e.key==='ArrowRight'||e.key==='ArrowUp'){stop();set(Math.min(6,cur+1),true);e.preventDefault()}if(e.key==='ArrowLeft'||e.key==='ArrowDown'){stop();set(Math.max(0,cur-1),true);e.preventDefault()}});
-play.addEventListener('click',function(){playing?stop():start()});
-if(playing){set(0,false);timer=setTimeout(tick,2600)}else{set(3,false);stop()}
-/* chats play on view */
-document.querySelectorAll('[data-play]').forEach(function(box){
-  if(reduce||!('IntersectionObserver' in window))return;
-  var ms=[].slice.call(box.querySelectorAll('.m')),done=false;
-  var io=new IntersectionObserver(function(es){es.forEach(function(e){if(!e.isIntersecting||done)return;done=true;io.disconnect();
-    ms.forEach(function(m){m.classList.add('hide')});var k=0;
-    (function next(){if(k>=ms.length)return;var m=ms[k];
-      if(m.classList.contains('b')){var tp=document.createElement('div');tp.className='tp';tp.innerHTML='<i></i><i></i><i></i>';m.parentNode.insertBefore(tp,m);
-        setTimeout(function(){tp.remove();m.classList.remove('hide');k++;setTimeout(next,700)},1100)}
-      else{m.classList.remove('hide');k++;setTimeout(next,900)}})();
-  })},{threshold:.45});io.observe(box)});
+var $=function(id){return document.getElementById(id)};
+var msgs=$('msgs'),know=[].slice.call(document.querySelectorAll('#know .k')),does=[].slice.call(document.querySelectorAll('#does li:not(.lab)')),rows=$('rows');
+var CHK='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12.5l5 5L20 6.5"/></svg>';
+var SC=[
+ {name:'Школа «Пример»',av:'Ш',day:'Пятница',lang:'ru',top:'Бот школы · отвечает и записывает на экскурсию',
+  know:[['Набор · 1 класс','открыт'],['Приём','собеседование'],['Экскурсии','вт, чт 16:00'],['Цена','скажет менеджер']],
+  m:[
+   {p:1,t:'22:40',x:'Здравствуйте! Есть места в 1 класс на следующий год?',k:[0],d:0},
+   {b:1,t:'22:40',x:'Здравствуйте! Да, набор в 1 класс открыт. Перед приёмом короткое собеседование с ребёнком. Хотите посмотреть школу? Экскурсия во вторник или четверг в 16:00.',k:[1,2],d:1},
+   {p:1,t:'22:42',x:'Давайте во вторник. Я Динара, сын сейчас в предшколе 🙏'},
+   {b:1,t:'22:42',card:1,x:'Записала вас:<span class="row"><strong>Экскурсия · вт 16:00</strong></span><span class="row">📍 ул. Примерная, 10</span><span class="row">👤 Динара · предшкола</span>Менеджер напишет утром и подтвердит.',d:2}
+  ],done:'✓ Записано',row:['Д','Динара','предшкола','вт 16:00']},
+ {name:'Мектеп «Мысал»',av:'М',day:'Сенбі',lang:'kz',top:'Мектеп боты · жауап береді, экскурсияға жазады',
+  know:[['Набор · 5 класс','открыт'],['Приём','беседа и тест'],['Экскурсии','вт, чт 16:00'],['Язык','казахский']],
+  m:[
+   {p:1,t:'23:12',x:'Сәлеметсіз бе! 5-сыныпқа орын бар ма?',k:[0,3],d:0},
+   {b:1,t:'23:12',x:'Сәлеметсіз бе! Иә, 5-сыныпқа қабылдау жүріп жатыр. Әңгімелесу және шағын тест болады. Мектепті көруге экскурсияға жазылайын ба? Сейсенбі не бейсенбі, 16:00.',k:[1,2],d:1},
+   {p:1,t:'23:13',x:'Бейсенбі. Атым Айгүл.'},
+   {b:1,t:'23:13',card:1,x:'Жаздым:<span class="row"><strong>Экскурсия · бс 16:00</strong></span><span class="row">📍 Мысал көшесі, 10</span><span class="row">👤 Айгүл · 5-сынып</span>Менеджер таңертең хабарласып, растайды.',d:2}
+  ],done:'✓ Жазылды',row:['А','Айгүл','5 класс','чт 16:00']}
+];
+var list=[],si=0,timers=[];
+function later(fn,ms){timers.push(setTimeout(fn,ms))}
+function el(tag,cls,html){var e=document.createElement(tag);if(cls)e.className=cls;if(html!=null)e.innerHTML=html;return e}
+function word(n){var a=n%10,b=n%100;return n+' '+(a===1&&b!==11?'запись':a>=2&&a<=4&&(b<10||b>=20)?'записи':'записей')}
+function drawRows(fresh){rows.innerHTML='';if(!list.length){rows.appendChild(el('div','r ph','Новые записи появятся здесь'))}
+  list.forEach(function(r,i){var d=el('div','r','<span class="a">'+r[0]+'</span><span><b>'+r[1]+'</b> · '+r[2]+'</span><span class="when">'+r[3]+(fresh&&i===list.length-1?'<span class="new">новая</span>':'')+'</span>');if(!(fresh&&i===list.length-1))d.style.animation='none';rows.appendChild(d)});
+  $('lcount').textContent=word(list.length)}
+function setup(s){msgs.innerHTML='';msgs.appendChild(el('div','day',s.day));$('chName').textContent=s.name;$('chAv').textContent=s.av;$('ptopTxt').textContent=s.top;
+  $('lgRu').classList.toggle('on',s.lang==='ru');$('lgKz').classList.toggle('on',s.lang==='kz');
+  know.forEach(function(k,i){k.classList.remove('ok');k.querySelector('.t').textContent=s.know[i][0];k.querySelector('.v').textContent=s.know[i][1]});
+  does.forEach(function(d){d.className=''});$('clock').textContent=s.m[0].t;$('waited').textContent='0 мин'}
+function bubble(m){var b=el('div','m '+(m.p?'p':'b')+(m.card?' card':''),m.x+'<em>'+m.t+'</em>');msgs.appendChild(b);trim()}
+function trim(){while(msgs.children.length>1&&msgs.scrollHeight>msgs.clientHeight+2){msgs.removeChild(msgs.children[1])}}
+function act(i){does.forEach(function(d,j){if(j<i)d.className='ok';else if(j===i)d.className='now'})}
+function play(){var s=SC[si];setup(s);var t=700;
+  s.m.forEach(function(m){
+    if(m.b){later(function(){act(m.d);var tp=el('div','tp','<i></i><i></i><i></i>');msgs.appendChild(tp);trim();later(function(){tp.remove()},1500)},t);t+=1500}
+    later(function(){$('clock').textContent=m.t;bubble(m);(m.k||[]).forEach(function(i){know[i].classList.add('ok')});
+      if(m.card){act(3);later(function(){does.forEach(function(d){d.className='ok'});list.push(s.row);if(list.length>3)list.shift();drawRows(true);msgs.appendChild(el('div','done',s.done));trim()},900)}},t);
+    t+=m.p?2000:(m.card?1200:2600)});
+  later(function(){si=(si+1)%SC.length;if(si===0)list=[];play()},t+4200)}
+function still(){var s=SC[0];setup(s);s.m.forEach(bubble);know.forEach(function(k){k.classList.add('ok')});does.forEach(function(d){d.className='ok'});list=[s.row];drawRows(false);msgs.appendChild(el('div','done',s.done));trim()}
+if(reduce){still();return}
+var started=false,io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting&&!started){started=true;play()}})},{threshold:.2});
+io.observe(document.querySelector('.panel'));
 })();
 </script>
 </body>
