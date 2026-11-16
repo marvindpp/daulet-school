@@ -76,7 +76,7 @@ header{background:var(--paper);border-bottom:3px solid var(--ink);position:stick
 .pgrid{display:grid;grid-template-columns:minmax(0,.86fr) minmax(0,1fr);gap:14px}
 
 /* чат */
-.chat{background:#EFE7DD;border-radius:20px;overflow:hidden;display:flex;flex-direction:column;height:384px}
+.chat{background:#EFE7DD;border-radius:20px;overflow:hidden;display:flex;flex-direction:column;min-height:384px}
 .chat .top{background:#F7F7F5;color:var(--ink);display:flex;align-items:center;gap:10px;padding:10px 12px;border-bottom:1px solid #E2DED6;flex:none}
 .chat .av{width:34px;height:34px;border-radius:50%;background:var(--yellow);border:2px solid var(--ink);display:grid;place-items:center;font-family:var(--disp);font-weight:800;font-size:14px;flex:none}
 .chat .top b{display:block;font-size:14px;line-height:1.2}
@@ -192,7 +192,7 @@ header{background:var(--paper);border-bottom:3px solid var(--ink);position:stick
 .chips span{background:rgba(255,255,255,.1);border-radius:7px;padding:3px 10px;font-weight:900;font-size:12px;color:var(--nt);transition:.35s}
 .chips span.on{background:var(--green);color:#fff}
 
-@media(max-width:620px){.pgrid{grid-template-columns:1fr}.chat{height:400px}.panel{padding:52px 10px 10px}.ptop{font-size:12px}}
+@media(max-width:620px){.pgrid{grid-template-columns:1fr}.chat{height:400px;min-height:0}.panel{padding:52px 10px 10px}.ptop{font-size:12px}}
 
 /* ======= кейсы ======= */
 section{padding:84px 0 0}
@@ -227,10 +227,10 @@ section{padding:84px 0 0}
 @media(max-width:900px){.faqg{grid-template-columns:1fr;gap:24px}.faqg .l{position:static}}
 
 /* ======= финал ======= */
-.final{margin:84px 0 0;background:linear-gradient(90deg,rgba(18,24,66,.96) 0%,rgba(18,24,66,.75) 45%,rgba(18,24,66,.1) 100%),url(img/final-bg.webp) right center/cover no-repeat,radial-gradient(90% 120% at 100% 100%,#2E3C92 0%,var(--n1) 45%,var(--n0) 100%);color:#fff;border:3px solid var(--ink);border-radius:34px;padding:clamp(32px,6vw,72px);box-shadow:0 10px 0 var(--ink);position:relative;overflow:hidden}
+.final{margin:84px 0 0;min-height:560px;display:flex;flex-direction:column;justify-content:center;background:linear-gradient(90deg,rgba(18,24,66,.85) 0%,rgba(18,24,66,.35) 45%,rgba(18,24,66,0) 65%),url(img/final-bg.webp) right bottom/cover no-repeat,radial-gradient(90% 120% at 100% 100%,#2E3C92 0%,var(--n1) 45%,var(--n0) 100%);color:#fff;border:3px solid var(--ink);border-radius:34px;padding:clamp(32px,6vw,72px);box-shadow:0 10px 0 var(--ink);position:relative;overflow:hidden}
 .final .kick{color:#7CF0B9;font-weight:900;font-size:16px}
-.final h2{font-size:clamp(32px,5vw,64px);line-height:1.05;margin-top:10px;max-width:18ch}
-.final p{color:var(--nt);font-size:19px;max-width:56ch;margin-top:18px}
+.final h2{font-size:clamp(30px,3.8vw,50px);line-height:1.05;margin-top:10px;max-width:13ch}
+.final p{color:var(--nt);font-size:18px;max-width:42ch;margin-top:18px}
 .final .cta{margin-top:30px}
 .final .btn.alt{background:transparent;color:#fff;border-color:#fff;box-shadow:0 5px 0 #fff}
 .final .btn.alt:hover{box-shadow:0 3px 0 #fff}
@@ -238,7 +238,7 @@ section{padding:84px 0 0}
 .final .as span{display:flex;align-items:center;gap:8px}
 .final .as span::before{content:"";width:8px;height:8px;border-radius:50%;background:#7CF0B9}
 .final .moon{position:absolute;right:clamp(-40px,4vw,70px);top:clamp(-30px,3vw,50px);width:clamp(120px,16vw,200px);aspect-ratio:1;border-radius:50%;background:var(--yellow);box-shadow:inset -26px -10px 0 #E8AE1E,0 0 60px rgba(255,201,60,.35);opacity:.95}
-@media(max-width:700px){.final .moon{opacity:.25}}
+@media(max-width:700px){.final{background:linear-gradient(180deg,rgba(18,24,66,.92) 0%,rgba(18,24,66,.75) 60%,rgba(18,24,66,.3) 100%),url(img/final-bg.webp) 78% bottom/cover no-repeat,var(--n0)}}
 
 /* ======= подвал ======= */
 footer{margin-top:84px;background:var(--paper);border-top:3px solid var(--ink);padding:48px 0 28px}
@@ -379,7 +379,6 @@ footer{margin-top:84px;background:var(--paper);border-top:3px solid var(--ink);p
 
   <!-- финал -->
   <div class="final">
-    <div class="moon" aria-hidden="true"></div>
     <div class="kick">Начать с демо</div>
     <h2>Бот вашей школы через 1–2 дня.</h2>
     <p>Скиньте сайт или Instagram школы. Я соберу бота на ваших данных и подключу к WhatsApp. Вы напишете ему вечером как родитель и решите, оставлять или нет.</p>
@@ -443,11 +442,11 @@ function setup(s){msgs.innerHTML='';msgs.appendChild(el('div','day',s.day));$('c
   $('lgRu').classList.toggle('on',s.lang==='ru');$('lgKz').classList.toggle('on',s.lang==='kz');
   know.forEach(function(k,i){k.className='k';k.querySelector('.t').textContent=s.know[i][0];k.querySelector('.v').textContent=s.know[i][1]});
   tools.forEach(function(d){d.className=''});setTime(s.steps[0].t.replace(/\d$/,function(d){return d}));$('rt').textContent='0.0с';$('ring').style.setProperty('--p','0%');
-  rec.className='c rec dash';rec.innerHTML=SK;fld.className='fld ph';fld.textContent='Сообщение…'}
+  rec.className='c rec dash';rec.innerHTML=SK;fld.className='fld ph';fld.textContent=s.lang==='kz'?'Хабарлама…':'Сообщение…'}
 function scr(){if(msgs.scrollHeight>msgs.clientHeight)msgs.scrollTo({top:msgs.scrollHeight,behavior:'smooth'})}
 function bubble(cls,html,t){msgs.appendChild(el('div','m '+cls,html+'<em>'+t+'</em>'));setTimeout(scr,30)}
 function sparks(){for(var i=0;i<5;i++){var s=el('i','spark');s.style.left=(44+Math.random()*10)+'%';s.style.top=(40+Math.random()*30)+'%';s.style.setProperty('--dx',(60+Math.random()*120)+'px');s.style.setProperty('--dy',(-40-Math.random()*90)+'px');s.style.animationDelay=(i*120)+'ms';document.querySelector('.panel').appendChild(s);(function(s){setTimeout(function(){s.remove()},1800)})(s)}}
-async function type(text){fld.className='fld on';fld.innerHTML='<span></span>';var sp=fld.firstChild;for(var i=1;i<=text.length;i++){sp.textContent=text.slice(0,i);await sleep(text.length>30?28:45)}await sleep(350);fld.className='fld ph';fld.textContent='Сообщение…'}
+async function type(text){fld.className='fld on';fld.innerHTML='<span></span>';var sp=fld.firstChild;for(var i=1;i<=text.length;i++){sp.textContent=text.slice(0,i);await sleep(text.length>30?28:45)}await sleep(350);fld.className='fld ph';fld.textContent=SC[si].lang==='kz'?'Хабарлама…':'Сообщение…'}
 async function think(st,s){await sleep(300);var tp=el('div','tp','<i></i><i></i><i></i>');msgs.appendChild(tp);scr();document.querySelector('.brain').classList.add('thinking');$('chSt').textContent=s.typing;$('chSt').classList.add('typing');$('bSt').textContent='думает…';sparks();
   var t0=performance.now(),run=true;(function tick(){if(!run)return;var d=(performance.now()-t0)/1000;$('rt').textContent=d.toFixed(1)+'с';$('ring').style.setProperty('--p',Math.min(100,d/ (st.think/1000)*100)+'%');requestAnimationFrame(tick)})();
   var ks=st.k||[],ts=st.tl||[],n=Math.max(ks.length,ts.length,1),gap=st.think/(n+1);
