@@ -58,10 +58,10 @@ header{background:var(--paper);border-bottom:3px solid var(--ink);position:stick
 .ai .btn{box-shadow:0 5px 0 #000}
 .ai .btn.alt{background:transparent;color:#fff;border-color:#fff;box-shadow:0 5px 0 rgba(255,255,255,.35)}
 .ai .under{margin-top:12px;color:var(--nm);font-size:13px;font-weight:700}
-@media(max-width:1020px){.ai .wrap{grid-template-columns:1fr;gap:36px;padding-top:56px;padding-bottom:64px}}
+@media(max-width:1020px){.ai .wrap{grid-template-columns:minmax(0,1fr);gap:36px;padding-top:56px;padding-bottom:64px}}
 
 /* панель */
-.stage{position:relative}
+.stage{position:relative;min-width:0}
 .blob{position:absolute;border-radius:50%;filter:blur(60px);opacity:.55;pointer-events:none}
 .blob.a{width:340px;height:340px;background:#3A57D8;right:-60px;top:-70px;animation:float 9s ease-in-out infinite}
 .blob.b{width:300px;height:300px;background:#1FA77A;left:-40px;bottom:-80px;opacity:.35;animation:float 11s ease-in-out infinite reverse}
